@@ -15,7 +15,8 @@ namespace Infrastructure.IRepository
         Task Add(T entity, Action<string> LogAction);
         Task Update(T entity, Action<string> LogAction);
         Task Delete(int id, Action<string> LogAction);
-        Task SaveChanges();
+        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> criteria = null, Expression<Func<T, object>>[] includes = null);
+        //Task SaveChanges();
 
     }
 }

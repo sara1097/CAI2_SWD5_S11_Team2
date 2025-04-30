@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YTDrCRIFlu8=",
+  "dgSpecHash": "Jmv4/uJSfg0=",
   "success": true,
-  "projectFilePath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Web\\Web.csproj",
+  "projectFilePath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Web\\Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\malawy\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\malawy\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

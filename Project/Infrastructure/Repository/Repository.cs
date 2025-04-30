@@ -59,13 +59,31 @@ namespace Infrastructure.Repository
                 await _context.SaveChangesAsync();
                 LogAction?.Invoke($"Entity of type {typeof(T).Name} deleted Successfully");
             }
-             
+            else
+            {
+                LogAction?.Invoke($"Entity of type {typeof(T).Name} not found");
+                return;
+            }
+
         }
 
-        public async Task SaveChanges()
+        public Task<List<T>> GetAllAsync( Expression<Func<T, bool>> criteria = null, Expression<Func<T, object>>[] includes = null)
         {
-            await _context.SaveChangesAsync();
+            IQueryable<T> query = _dbSet;
+            if (criteria is not null)
+            {
+                query = query.Where(criteria);
+            }
+            if (includes is not null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
+            }
+            return query.ToListAsync();
         }
+
 
     }
 }

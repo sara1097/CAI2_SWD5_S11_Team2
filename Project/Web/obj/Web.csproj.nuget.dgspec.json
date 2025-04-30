@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Web\\Web.csproj": {}
+    "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Web\\Web.csproj": {}
   },
   "projects": {
-    "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Core\\Core.csproj": {
+    "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Core\\Core.csproj",
+        "projectUniqueName": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Core\\Core.csproj",
+        "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\malawy\\.nuget\\packages\\",
-        "outputPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Core\\obj\\",
+        "outputPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -70,14 +70,14 @@
         }
       }
     },
-    "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Domain\\Domain.csproj": {
+    "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Domain\\Domain.csproj",
+        "projectUniqueName": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Domain\\Domain.csproj",
+        "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\malawy\\.nuget\\packages\\",
-        "outputPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Domain\\obj\\",
+        "outputPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -136,14 +136,14 @@
         }
       }
     },
-    "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Infrastructure\\Infrastructure.csproj": {
+    "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\malawy\\.nuget\\packages\\",
-        "outputPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Infrastructure\\obj\\",
+        "outputPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -165,11 +165,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Core\\Core.csproj": {
-                "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Core\\Core.csproj"
+              "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Core\\Core.csproj": {
+                "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Core\\Core.csproj"
               },
-              "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Domain\\Domain.csproj": {
-                "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Domain\\Domain.csproj"
+              "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
+                "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj"
               }
             }
           }
@@ -225,14 +225,14 @@
         }
       }
     },
-    "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Web\\Web.csproj": {
+    "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Web\\Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Web\\Web.csproj",
+        "projectUniqueName": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Web\\Web.csproj",
         "projectName": "Web",
-        "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Web\\Web.csproj",
+        "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Web\\Web.csproj",
         "packagesPath": "C:\\Users\\malawy\\.nuget\\packages\\",
-        "outputPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Web\\obj\\",
+        "outputPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -254,14 +254,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Core\\Core.csproj": {
-                "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Core\\Core.csproj"
+              "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Core\\Core.csproj": {
+                "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Core\\Core.csproj"
               },
-              "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Domain\\Domain.csproj": {
-                "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Domain\\Domain.csproj"
+              "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
+                "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj"
               },
-              "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\Infrastructure\\Infrastructure.csproj"
+              "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "E:\\Mero_Projects\\Depi_Pro\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
