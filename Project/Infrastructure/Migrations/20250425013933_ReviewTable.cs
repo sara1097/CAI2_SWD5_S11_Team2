@@ -10,103 +10,51 @@ namespace Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Review_Customers_CustomerId",
-                table: "Review");
+            migrationBuilder.CreateTable(
+                name: "Reviews",  // Changed from "Review" to "Reviews" to match DbSet
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    Rating = table.Column<int>(nullable: false),
+                    Comment = table.Column<string>(nullable: true),
+                    ReviewDate = table.Column<DateTime>(nullable: false)  // Changed from DateCreated
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Review_Products_ProductId",
-                table: "Review");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Review",
-                table: "Review");
-
-            migrationBuilder.RenameTable(
-                name: "Review",
-                newName: "Reviews");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Review_ProductId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_CustomerId",
                 table: "Reviews",
-                newName: "IX_Reviews_ProductId");
+                column: "CustomerId");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_Review_CustomerId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_ProductId",
                 table: "Reviews",
-                newName: "IX_Reviews_CustomerId");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Reviews",
-                table: "Reviews",
-                column: "Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Reviews_Customers_CustomerId",
-                table: "Reviews",
-                column: "CustomerId",
-                principalTable: "Customers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Reviews_Products_ProductId",
-                table: "Reviews",
-                column: "ProductId",
-                principalTable: "Products",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                column: "ProductId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Reviews_Customers_CustomerId",
-                table: "Reviews");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Reviews_Products_ProductId",
-                table: "Reviews");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Reviews",
-                table: "Reviews");
-
-            migrationBuilder.RenameTable(
-                name: "Reviews",
-                newName: "Review");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Reviews_ProductId",
-                table: "Review",
-                newName: "IX_Review_ProductId");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Reviews_CustomerId",
-                table: "Review",
-                newName: "IX_Review_CustomerId");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Review",
-                table: "Review",
-                column: "Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Review_Customers_CustomerId",
-                table: "Review",
-                column: "CustomerId",
-                principalTable: "Customers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Review_Products_ProductId",
-                table: "Review",
-                column: "ProductId",
-                principalTable: "Products",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+            migrationBuilder.DropTable(
+                name: "Reviews");
         }
     }
 }
