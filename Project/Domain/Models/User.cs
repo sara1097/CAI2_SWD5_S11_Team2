@@ -4,22 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Models
 {
-    public class User
+    public class User: IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string Name { get; set; }
-
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [Required]
-        public string Password { get; set; }
+        public virtual Admin Admin { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

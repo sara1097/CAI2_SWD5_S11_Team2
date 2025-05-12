@@ -12,11 +12,10 @@ namespace Infrastructure.IRepository
         Task<T> GetById(int id); // task for asynchronous 
         Task<List<T>> GetAll();
         Task<List<T>> Search(Expression<Func<T, bool>> predicate);
-        Task Add(T entity, Action<string> LogAction);
-        Task Update(T entity, Action<string> LogAction);
-        Task Delete(int id, Action<string> LogAction);
-        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> criteria = null, Expression<Func<T, object>>[] includes = null);
-        //Task SaveChanges();
+        Task Add(T entity);
+        void Update(T entity);
+        void Delete(T entity);
+        Task<List<T>> GetAll(Expression<Func<T, bool>> criteria = null, Expression<Func<T, object>>[] includes = null);
 
     }
 }

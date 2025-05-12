@@ -19,31 +19,31 @@ namespace Infrastructure.Repository
             _context = context;
         }
 
-        public async Task<Customer> GetByUserIdAsync(int userId)
-        {
-            var customer = await _context.Customers
-                .FirstOrDefaultAsync(c => c.UserId == userId);
+        //public async Task<Customer> GetByUserIdAsync(int userId)
+        //{
+        //    var customer = await _context.Customers
+        //        .FirstOrDefaultAsync(c => c.UserId == userId);
 
-            if (customer != null)
-            {
-                _context.Entry(customer).Reference(c => c.User).Load(); // object
-            }
+        //    if (customer != null)
+        //    {
+        //        _context.Entry(customer).Reference(c => c.User).Load(); // object
+        //    }
 
-            return customer;
-        }
+        //    return customer;
+        //}
 
-        public async Task<Customer> GetCustomerWithOrdersAsync(int id)
-        {
-            var customer = await _context.Customers
-                .FirstOrDefaultAsync(c => c.Id == id);
+        //public async Task<Customer> GetCustomerWithOrdersAsync(int id)
+        //{
+        //    var customer = await _context.Customers
+        //        .FirstOrDefaultAsync(c => c.Id == id);
 
-            if (customer != null)
-            {
-                _context.Entry(customer).Reference(c => c.User).Load();       // object
-                _context.Entry(customer).Collection(c => c.Orders).Load();    // collection
-            }
+        //    if (customer != null)
+        //    {
+        //        _context.Entry(customer).Reference(c => c.User).Load();       // object
+        //        _context.Entry(customer).Collection(c => c.Orders).Load();    // collection
+        //    }
 
-            return customer;
-        }
+        //    return customer;
+        //}
     }
 }

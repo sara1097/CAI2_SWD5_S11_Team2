@@ -22,11 +22,12 @@ namespace Infrastructure.Repository
             _dbSet = context.Set<T>();
         }
 
-        // Implementing the methods of IBaseRepository
+
         public async Task<T> GetById(int id)
         {
             return await _dbSet.FindAsync(id);
         }
+
 
 
         public async Task<List<T>> GetAll() 
@@ -38,36 +39,26 @@ namespace Infrastructure.Repository
         {
             return await _dbSet.Where(predicate).ToListAsync();
         }
-        public async Task Add(T entity, Action<string> LogAction)
+
+        public async Task Add(T entity)
         {
             _dbSet.Add(entity);
-            await _context.SaveChangesAsync();
-            LogAction?.Invoke($"Entity of type {typeof(T).Name} added Successfully");
+            //await _context.SaveChangesAsync();
+            //LogAction?.Invoke($"Entity of type {typeof(T).Name} added Successfully");
         }
-        public async Task Update(T entity, Action<string> LogAction)
+        public void Update(T entity)
         {
             _dbSet.Update(entity);
-            await _context.SaveChangesAsync();
-            LogAction?.Invoke($"Entity of type {typeof(T).Name} updated Successfully");
+            //LogAction?.Invoke($"Entity of type {typeof(T).Name} updated Successfully");
         }
-        public async Task Delete(int id, Action<string> LogAction)
+        public void Delete(T entity)
         {
-            var entity = await _dbSet.FindAsync(id);
-            if (entity != null)
-            {
-                _dbSet.Remove(entity);
-                await _context.SaveChangesAsync();
-                LogAction?.Invoke($"Entity of type {typeof(T).Name} deleted Successfully");
-            }
-            else
-            {
-                LogAction?.Invoke($"Entity of type {typeof(T).Name} not found");
-                return;
-            }
+            _dbSet.Remove(entity);
+            //LogAction?.Invoke($"Entity of type {typeof(T).Name} deleted Successfully");
 
         }
 
-        public Task<List<T>> GetAllAsync( Expression<Func<T, bool>> criteria = null, Expression<Func<T, object>>[] includes = null)
+        public Task<List<T>> GetAll( Expression<Func<T, bool>> criteria = null, Expression<Func<T, object>>[] includes = null)
         {
             IQueryable<T> query = _dbSet;
             if (criteria is not null)
@@ -84,6 +75,6 @@ namespace Infrastructure.Repository
             return query.ToListAsync();
         }
 
-
+      
     }
 }

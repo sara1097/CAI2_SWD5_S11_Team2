@@ -15,11 +15,13 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.IsHome = true;
             return View();
         }
 
         public IActionResult Privacy()
         {
+            ViewBag.IsHome = false;
             return View();
         }
 

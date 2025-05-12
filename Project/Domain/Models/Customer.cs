@@ -14,8 +14,9 @@ namespace Domain.Models
         public int Id { get; set; }
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
+        [Phone]
         public string PhoneNumber { get; set; }
 
 
