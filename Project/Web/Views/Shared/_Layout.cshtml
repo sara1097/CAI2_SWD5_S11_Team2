@@ -1,5 +1,13 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Domain.Models.User> SignInManager
+@inject UserManager<Domain.Models.User> UserManager
+
+@{
     var title = ViewData["Title"] != null ? ViewData["Title"] + " - TechEcommerce" : "TechEcommerce";
+    var isAuthenticated = SignInManager.IsSignedIn(User);
+    var isAdmin = User.IsInRole("Admin");
+    var isCustomer = User.IsInRole("Customer");
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -12,27 +20,17 @@
     <!-- title -->
     <title>@title</title>
 
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="~/assets/img/favicon.png">
-    <!-- google font -->
+    <link rel="shortcut icon" type="image/png" href="~/assets/img/favicon.png" asp-append-version="true">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="~/assets/css/all.min.css">
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
-    <!-- owl carousel -->
-    <link rel="stylesheet" href="~/assets/css/owl.carousel.css">
-    <!-- magnific popup -->
-    <link rel="stylesheet" href="~/assets/css/magnific-popup.css">
-    <!-- animate css -->
-    <link rel="stylesheet" href="~/assets/css/animate.css">
-    <!-- mean menu css -->
-    <link rel="stylesheet" href="~/assets/css/meanmenu.min.css">
-    <!-- main style -->
-    <link rel="stylesheet" href="~/assets/css/main.css">
-    <!-- responsive -->
-    <link rel="stylesheet" href="~/assets/css/responsive.css">
+    <link rel="stylesheet" href="~/assets/css/all.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/owl.carousel.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/magnific-popup.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/animate.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/meanmenu.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/main.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/responsive.css" asp-append-version="true">
     <!-- site css -->
     @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
 </head>
@@ -44,14 +42,11 @@
         </div>
     </div>
     <!--PreLoader Ends-->
-    <!-- header -->
-    <header>
+    <!-- Nav -->
     <partial name="_NavBar" />
-    <!-- end header -->
-	</header>
+    <!-- EndNav -->
 
-    @* <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a> *@
-    @* <div class="mobile-menu"></div> *@
+
     <!-- search area -->
     <div class="search-area">
         <div class="container">
@@ -73,17 +68,10 @@
 
     <!-- Main content area -->
      @* <div class="container">  *@
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <main role="main" class="pb-3" >
-        @RenderBody() 
-     </main> 
+		 
+    <main role="main" class="pb-3"  >
+            @RenderBody()
+	</main> 
 
      @* </div>  *@
 
@@ -118,23 +106,14 @@
     <!-- end copyright -->
     <!-- jquery -->
     <script src="~/assets/js/jquery-1.11.3.min.js"></script>
-    <!-- bootstrap -->
     <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
-    <!-- count down -->
     <script src="~/assets/js/jquery.countdown.js"></script>
-    <!-- isotope -->
     <script src="~/assets/js/jquery.isotope-3.0.6.min.js"></script>
-    <!-- waypoints -->
     <script src="~/assets/js/waypoints.js"></script>
-    <!-- owl carousel -->
     <script src="~/assets/js/owl.carousel.min.js"></script>
-    <!-- magnific popup -->
     <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
-    <!-- mean menu -->
     <script src="~/assets/js/jquery.meanmenu.min.js"></script>
-    <!-- sticker js -->
     <script src="~/assets/js/sticker.js"></script>
-    <!-- main js -->
     <script src="~/assets/js/main.js"></script>
     <!-- site js -->
     @* <script src="~/js/site.js" asp-append-version="true"></script> *@
@@ -174,7 +153,7 @@
 
 
 
-@* <!DOCTYPE html>
+@* <!DOCTYPE html> *@
 @* <html lang="en"> *@
 @* <head> *@
 @*     <meta charset="utf-8" /> *@
@@ -183,6 +162,17 @@
 @*     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
 @*     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
 @*     <link rel="stylesheet" href="~/Web.styles.css" asp-append-version="true" /> *@
+@*     <link rel="shortcut icon" type="image/png" href="~/assets/img/favicon.png" asp-append-version="true"> *@
+@*     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> *@
+@*     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"> *@
+@*     <link rel="stylesheet" href="~/assets/css/all.min.css" asp-append-version="true"> *@
+@*     <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css" asp-append-version="true"> *@
+@*     <link rel="stylesheet" href="~/assets/css/owl.carousel.css" asp-append-version="true"> *@
+@*     <link rel="stylesheet" href="~/assets/css/magnific-popup.css" asp-append-version="true"> *@
+@*     <link rel="stylesheet" href="~/assets/css/animate.css" asp-append-version="true"> *@
+@*     <link rel="stylesheet" href="~/assets/css/meanmenu.min.css" asp-append-version="true"> *@
+@*     <link rel="stylesheet" href="~/assets/css/main.css" asp-append-version="true"> *@
+@*     <link rel="stylesheet" href="~/assets/css/responsive.css" asp-append-version="true"> *@
 @* </head> *@
 @* <body> *@
 @*     <header> *@
@@ -202,6 +192,7 @@
 @*                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
 @*                         </li> *@
 @*                     </ul> *@
+                    
 @*                 </div> *@
 @*             </div> *@
 @*         </nav> *@
@@ -219,6 +210,16 @@
 @*     </footer> *@
 @*     <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
 @*     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+@*     <script src="~/assets/js/jquery-1.11.3.min.js"></script> *@
+@*     <script src="~/assets/bootstrap/js/bootstrap.min.js"></script> *@
+@*     <script src="~/assets/js/jquery.countdown.js"></script> *@
+@*     <script src="~/assets/js/jquery.isotope-3.0.6.min.js"></script> *@
+@*     <script src="~/assets/js/waypoints.js"></script> *@
+@*     <script src="~/assets/js/owl.carousel.min.js"></script> *@
+@*     <script src="~/assets/js/jquery.magnific-popup.min.js"></script> *@
+@*     <script src="~/assets/js/jquery.meanmenu.min.js"></script> *@
+@*     <script src="~/assets/js/sticker.js"></script> *@
+@*     <script src="~/assets/js/main.js"></script> *@
 @*     <script src="~/js/site.js" asp-append-version="true"></script> *@
 @*     @await RenderSectionAsync("Scripts", required: false) *@
 @* </body> *@

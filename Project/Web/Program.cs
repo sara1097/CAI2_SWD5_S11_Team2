@@ -21,6 +21,8 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 
 
 
+
+
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork)); 
 builder.Services.AddScoped(typeof(IProductRepository), typeof(ProductRepository));
