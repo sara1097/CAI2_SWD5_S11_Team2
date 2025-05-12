@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Web.Controllers.Admin.Controllers
+namespace Web.Controllers.Admin
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]

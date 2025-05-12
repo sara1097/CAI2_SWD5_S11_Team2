@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Web.Controllers.Customer.Controllers
+namespace Web.Controllers.Customer
 {
     [Authorize]
     public class ProductController : Controller
