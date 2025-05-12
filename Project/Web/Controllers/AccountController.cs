@@ -15,13 +15,15 @@ namespace Web.Controllers
         private readonly IUnitOfWork _unitOfWork;
 
         public AccountController(
-            UserManager<User> userManager,
-            SignInManager<User> signInManager,
-            RoleManager<IdentityRole> roleManager)
+        UserManager<User> userManager,
+        SignInManager<User> signInManager,
+        RoleManager<IdentityRole> roleManager,
+        IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
@@ -64,7 +66,8 @@ namespace Web.Controllers
                     _unitOfWork._customer.Add(customer);
                     await _unitOfWork.CompleteAsync();
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Customer");
                 }
 
                 foreach (var error in result.Errors)
@@ -77,25 +80,41 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login()
         {
-            ViewData["ReturnUrl"] = returnUrl;
+            //ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            ViewData["ReturnUrl"] = returnUrl;
+            //ViewData["ReturnUrl"] = returnUrl;
 
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email,model.Password, false,lockoutOnFailure: false);
 
+
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    var roles = await _userManager.GetRolesAsync(user);
+
+                    // Redirect based on role
+                    if (roles.Contains("Admin"))
+                    {
+                        //return RedirectToAction("Dashboard", "Admin");
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else if (roles.Contains("Customer"))
+                    {
+                        return RedirectToAction("Index", "Customer");
+                    }
                     // Redirect to original URL or default home
-                    return LocalRedirect(returnUrl ?? Url.Content("~/"));
+                    //return LocalRedirect(returnUrl ?? Url.Content("~/"));
+                    //return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
@@ -111,26 +130,5 @@ namespace Web.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
-        //[HttpGet]
-        //[Authorize(Roles = "Admin")]
-        //public async Task<IActionResult> CreateRoles()
-        //{
-        //    string[] roleNames = { "Admin", "Customer" };
-
-        //    foreach (var roleName in roleNames)
-        //    {
-        //        // Check if role exists
-        //        var roleExist = await _roleManager.RoleExistsAsync(roleName);
-
-        //        if (!roleExist)
-        //        {
-        //            // Create the roles and seed them to the database
-        //            await _roleManager.CreateAsync(new IdentityRole(roleName));
-        //        }
-        //    }
-
-        //    return Content("Roles created successfully");
-        //}
     }
 }

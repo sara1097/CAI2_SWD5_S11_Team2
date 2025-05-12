@@ -276,17 +276,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"o1ikdnjsj3"},{"Name":"integrity","Value":"sha256-pE5TfrDf4N/bOnqxNLJXkMb5njNDa/YD6HlZjsFkqf0="},{"Name":"label","Value":"_content/Web/assets/css/magnific-popup.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"6950"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022pE5TfrDf4N/bOnqxNLJXkMb5njNDa/YD6HlZjsFkqf0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 11 May 2025 11:02:53 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Web/assets/css/main.ai9uld47ol.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\css\main.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ai9uld47ol"},{"Name":"integrity","Value":"sha256-Xuu5/32ubM6FMJJV9qA0HPL5V2tTWhr1SQdwwZ9XK1Y="},{"Name":"label","Value":"_content/Web/assets/css/main.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"47698"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022Xuu5/32ubM6FMJJV9qA0HPL5V2tTWhr1SQdwwZ9XK1Y=\u0022"},{"Name":"Last-Modified","Value":"Mon, 12 May 2025 22:22:38 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Web/assets/css/main.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\css\main.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-p7IGluIH\u002B/fdQu42dAPTuXDlH0vrSd51x3CJREYvybc="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"47643"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022p7IGluIH\u002B/fdQu42dAPTuXDlH0vrSd51x3CJREYvybc=\u0022"},{"Name":"Last-Modified","Value":"Mon, 12 May 2025 16:25:29 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Web/assets/css/main.xqp8xqz2ta.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\css\main.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"xqp8xqz2ta"},{"Name":"integrity","Value":"sha256-p7IGluIH\u002B/fdQu42dAPTuXDlH0vrSd51x3CJREYvybc="},{"Name":"label","Value":"_content/Web/assets/css/main.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"47643"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022p7IGluIH\u002B/fdQu42dAPTuXDlH0vrSd51x3CJREYvybc=\u0022"},{"Name":"Last-Modified","Value":"Mon, 12 May 2025 16:25:29 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Xuu5/32ubM6FMJJV9qA0HPL5V2tTWhr1SQdwwZ9XK1Y="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"47698"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022Xuu5/32ubM6FMJJV9qA0HPL5V2tTWhr1SQdwwZ9XK1Y=\u0022"},{"Name":"Last-Modified","Value":"Mon, 12 May 2025 22:22:38 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Web/assets/css/meanmenu.min.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\css\meanmenu.min.css'))</AssetFile>

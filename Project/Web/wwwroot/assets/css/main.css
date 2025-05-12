@@ -18,7 +18,9 @@ html {
   height: 100%;
 }
 
-
+.active-orange > a {
+    color: #fd7e14 !important;
+}
 
 body {
   font-family: "Open Sans", sans-serif;

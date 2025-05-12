@@ -1,0 +1,58 @@
+﻿@{
+	ViewData["Title"] = "Admin Customer"; ViewData["Description"] = "TechEcommerce";
+}
+
+<div class="container mt-150 mb-150" style="padding:50px">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <h2 style="color:Black">Welcome, Customer!</h2>
+            <p style="color:Black">You are logged in as an Customer.</p>
+        </div>
+    </div>
+</div>
+
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h3><span class="orange-text">Our</span> Products</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a asp-area="" asp-controller="Shop" asp-action="Product" asp-route-id="1"><img src="~/assets/img/products/product-img-1.jpg" alt=""></a>
+                    </div>
+                    <h3>Strawberry</h3>
+                    <p class="product-price"><span>Per Kg</span> 85$ </p>
+                    <a asp-area="" asp-controller="Shop" asp-action="AddToCart" asp-route-id="1" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a asp-area="" asp-controller="Shop" asp-action="Product" asp-route-id="2"><img src="~/assets/img/products/product-img-2.jpg" alt=""></a>
+                    </div>
+                    <h3>Berry</h3>
+                    <p class="product-price"><span>Per Kg</span> 70$ </p>
+                    <a asp-area="" asp-controller="Shop" asp-action="AddToCart" asp-route-id="2" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a asp-area="" asp-controller="Shop" asp-action="Product" asp-route-id="3"><img src="~/assets/img/products/product-img-3.jpg" alt=""></a>
+                    </div>
+                    <h3>Lemon</h3>
+                    <p class="product-price"><span>Per Kg</span> 35$ </p>
+                    <a asp-area="" asp-controller="Shop" asp-action="AddToCart" asp-route-id="3" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

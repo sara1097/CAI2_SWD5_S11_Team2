@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YfuTEaXJkVReGXDgpEywTKrP5yIjlzM8cfK2p4YvuPA=",
+  "Hash": "A1eC6PmHOllFRFjGIPYFsiUG5zCTDbI0sH2YBYogm/c=",
   "Source": "Web",
   "BasePath": "_content/Web",
   "Mode": "Default",
@@ -1816,8 +1816,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xqp8xqz2ta",
-      "Integrity": "p7IGluIH+/fdQu42dAPTuXDlH0vrSd51x3CJREYvybc=",
+      "Fingerprint": "ai9uld47ol",
+      "Integrity": "Xuu5/32ubM6FMJJV9qA0HPL5V2tTWhr1SQdwwZ9XK1Y=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\css\\main.css"
@@ -6798,6 +6798,51 @@
       ]
     },
     {
+      "Route": "assets/css/main.ai9uld47ol.css",
+      "AssetFile": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Web\\wwwroot\\assets\\css\\main.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "47698"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Xuu5/32ubM6FMJJV9qA0HPL5V2tTWhr1SQdwwZ9XK1Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 12 May 2025 22:22:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ai9uld47ol"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/css/main.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Xuu5/32ubM6FMJJV9qA0HPL5V2tTWhr1SQdwwZ9XK1Y="
+        }
+      ]
+    },
+    {
       "Route": "assets/css/main.css",
       "AssetFile": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Web\\wwwroot\\assets\\css\\main.css",
       "Selectors": [],
@@ -6808,7 +6853,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "47643"
+          "Value": "47698"
         },
         {
           "Name": "Content-Type",
@@ -6816,11 +6861,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"p7IGluIH+/fdQu42dAPTuXDlH0vrSd51x3CJREYvybc=\""
+          "Value": "\"Xuu5/32ubM6FMJJV9qA0HPL5V2tTWhr1SQdwwZ9XK1Y=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 12 May 2025 16:25:29 GMT"
+          "Value": "Mon, 12 May 2025 22:22:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6830,52 +6875,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-p7IGluIH+/fdQu42dAPTuXDlH0vrSd51x3CJREYvybc="
-        }
-      ]
-    },
-    {
-      "Route": "assets/css/main.xqp8xqz2ta.css",
-      "AssetFile": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Web\\wwwroot\\assets\\css\\main.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "47643"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"p7IGluIH+/fdQu42dAPTuXDlH0vrSd51x3CJREYvybc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 12 May 2025 16:25:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "xqp8xqz2ta"
-        },
-        {
-          "Name": "label",
-          "Value": "assets/css/main.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-p7IGluIH+/fdQu42dAPTuXDlH0vrSd51x3CJREYvybc="
+          "Value": "sha256-Xuu5/32ubM6FMJJV9qA0HPL5V2tTWhr1SQdwwZ9XK1Y="
         }
       ]
     },

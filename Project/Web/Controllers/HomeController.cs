@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Domain.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Web.Controllers
 {
@@ -8,22 +9,35 @@ namespace Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+
+        public HomeController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
-            _logger = logger;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewBag.IsHome = true;
-            return View();
+            if (_signInManager.IsSignedIn(User))
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (await _userManager.IsInRoleAsync(user, "Admin"))
+                    return RedirectToAction("Index", "Admin");
+
+                if (await _userManager.IsInRoleAsync(user, "Customer"))
+                    return RedirectToAction("Index", "Customer");
+            }
+
+            return View(); // default homepage for guests
         }
 
-        public IActionResult Privacy()
-        {
-            ViewBag.IsHome = false;
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

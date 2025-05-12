@@ -5,6 +5,8 @@
     var isAuthenticated = SignInManager.IsSignedIn(User);
     var isAdmin = User.IsInRole("Admin");
     var isCustomer = User.IsInRole("Customer");
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
 }
 
 <div class="top-header-area" id="sticker" style="background-color:#1a1a1a">
@@ -32,23 +34,36 @@
                             else if (isAdmin)
                             {
                                 <!-- Admin Navbar -->
+                                @* <li class="current-list-item "> *@
+                                @*     <a asp-area="" asp-controller="" asp-action="">Dashboard</a> *@
+                                @*     <a asp-area="" asp-controller="" asp-action="">Manage Orders</a> *@
+                                @*     <a asp-area="" asp-controller="" asp-action="">Manage Products</a> *@
+                                @*     <a asp-area="" asp-controller="" asp-action="">Manage Categories</a> *@
+                                @* </li> *@
+                                <li><a asp-area="" asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+                                <li><a asp-area="" asp-controller="" asp-action="">Manage Orders</a></li>
+                                <li><a asp-area="" asp-controller="" asp-action="">Manage Products</a></li>
+                                <li><a asp-area="" asp-controller="" asp-action="">Manage Categories</a></li>
                                 <li class="current-list-item ">
-                                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
-                                    <a asp-area="Admin" asp-controller="Orders" asp-action="Index">Manage Orders</a>
-                                    <a asp-area="Admin" asp-controller="Products" asp-action="Index">Manage Products</a>
-                                    <a asp-area="Admin" asp-controller="Categories" asp-action="Index">Manage Categories</a>
+                                    <form asp-controller="Account" asp-action="Logout" method="post">
+                                        <button type="submit" style=" background-color:#1a1a1a; border:none">
+                                            <i class="fas fa-portrait" style="font-size:28px; color:#fd7e14;"></i>
+                                        </button>
+                                    </form>
                                 </li>
                             }
                             else if (isCustomer)
                             {
-                                <li class="current-list-item ">
-                                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                    <ul class="sub-menu">
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Static Home</a></li>
+                                <li class="@(currentController == "Customer" && currentAction == "Index" ? "active-orange" : "")">
+                                    <a asp-area="" asp-controller="Customer" asp-action="Index">Home</a>
+                                     @* <ul class="sub-menu">  *@
+                                        @* <li><a asp-area="" asp-controller="Home" asp-action="Index">Static Home</a></li> *@
                                         @* <li><a asp-area="" asp-controller="Home" asp-action="IndexSlider">Slider Home</a></li> *@
-                                    </ul>
+                                     @* </ul>  *@
                                 </li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                                <li class="@(currentController == "Customer" && currentAction == "About" ? "active-orange" : "")">
+                                    <a asp-area="" asp-controller="Customer" asp-action="About">About</a>
+                                </li>
                                 <li>
                                     <a href="#">Pages</a>
                                     <ul class="sub-menu">
@@ -82,16 +97,24 @@
                                     <div class="header-icons">
                                         <a class="shopping-cart" asp-area="" asp-controller="Shop" asp-action="Cart"><i class="fas fa-shopping-cart"></i></a>
                                         <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                        <form asp-controller="Account" asp-action="Logout" method="post">
+                                            <button type="submit" style=" background-color:#1a1a1a; border:none">
+                                                <i class="fas fa-portrait" style="font-size:28px; color:#fd7e14;"></i>
+                                            </button>
+                                        </form>
                                     </div>
 								</li>
-                                <li class="current-list-item ">
-                                    <a asp-area="" asp-controller="Account" asp-action="Logout"><i class='fas fa-portrait' style='font-size:28px;'></i></a>
-                                </li>
-								<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-								<div class="mobile-menu"></div>
+                                @* <li class="current-list-item "> *@
+                                @*     <form asp-controller="Account" asp-action="Logout" method="post" > *@
+                                @*         <button type="submit" style=" background-color:#1a1a1a; border:none"> *@
+                                @*             <i class="fas fa-portrait" style="font-size:28px; color:#fd7e14;"></i> *@
+                                @*         </button>  *@
+                                @*     </form> *@
+                                @* </li>	 *@
                             }   
-						</ul>                       
-                    </nav>
+						</ul>
+                        
+					</nav>
 					
                     <!-- menu end -->
                 </div>
