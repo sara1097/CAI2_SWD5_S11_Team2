@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
@@ -6,9 +7,24 @@ namespace Web.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        public IActionResult Index()
+        private readonly OrderService _orderService;
+
+        public AdminController(OrderService orderService)
+        {
+            _orderService = orderService;
+        }
+
+        public IActionResult Products()
         {
             return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Orders()
+        {
+            var orders = await _orderService.GetAllOrdersAsync();
+            return View(orders);
         }
     }
 }

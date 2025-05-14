@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Domain.Models.Order;
 
 namespace Domain.Models
 {
@@ -22,15 +23,17 @@ namespace Domain.Models
         [Column(TypeName = "decimal(10,2)")]
         public decimal TotalAmount { get; set; }
 
-        public string Status { get; set; }
+        public OrderStatus Status { get; set; } = OrderStatus.Pending;
 
-        public string PaymentStatus { get; set; }
+        public PaymentStatus PaymentStatus { get; set; } = PaymentStatus.Pending;
 
         public string ShippingAddress { get; set; }
 
-        public string PaymentMethod { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
 
-        public DateTime OrderDate { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
+        public DateTime? ShippedDate { get; set; }
+        public DateTime? DeliveredDate { get; set; }
 
         [ForeignKey("Payment")]
         public int? PaymentId { get; set; }
@@ -39,5 +42,26 @@ namespace Domain.Models
         public virtual Customer Customer { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual List<OrderItem> OrderItems { get; set; }
+    }
+    public enum OrderStatus
+    {
+        Pending,
+        Processing,
+        Shipped,
+        Delivered,
+        Cancelled
+    }
+
+    public enum PaymentStatus
+    {
+        Pending,
+        Paid,
+        Failed
+    }
+
+    public enum PaymentMethod
+    {
+        Stripe,
+        CashOnDelivery
     }
 }

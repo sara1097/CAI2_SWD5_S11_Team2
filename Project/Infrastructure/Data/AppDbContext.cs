@@ -29,14 +29,14 @@ namespace Infrastructure.Data
             // Configure User -> Admin (one-to-one)
             modelBuilder.Entity<Admin>()
                 .HasOne(a => a.User)
-                .WithOne()
+                .WithOne(u => u.Admin) // ✅ specify inverse property
                 .HasForeignKey<Admin>(a => a.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Configure User -> Customer (one-to-one)
             modelBuilder.Entity<Customer>()
                 .HasOne(c => c.User)
-                .WithOne()
+                .WithOne(u => u.Customer)
                 .HasForeignKey<Customer>(c => c.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
@@ -136,6 +136,8 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Order>()
                 .HasIndex(o => o.OrderNumber)
                 .IsUnique();
+
+
 
             // Configure decimal precision
             //modelBuilder.Entity<Product>()
