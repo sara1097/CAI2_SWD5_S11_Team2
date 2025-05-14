@@ -118,6 +118,40 @@ namespace Core.Services
                 return false;
             }
         }
+
+
+
+        //public async Task<Order> CreateOrderFromCart(int cartId, string userId)
+        //{
+        //    var cart = await _unitOfWork._cart.GetById(cartId);
+
+        //    var order = new Order
+        //    {
+        //        UserId = userId,
+        //        OrderDate = DateTime.UtcNow,
+        //        Status = OrderStatus.Pending,
+        //        OrderItems = cart.Items.Select(ci => new OrderItem
+        //        {
+        //            ProductId = ci.ProductId,
+        //            Quantity = ci.Quantity,
+        //            UnitPrice = ci.Product.Price, // Get current price
+        //            Color = ci.Color,
+        //            Size = ci.Size,
+        //            // CartItemId = ci.Id // Only include if using Option 2
+        //        }).ToList()
+        //    };
+
+        //    // Calculate order total
+        //    foreach (var item in order.OrderItems)
+        //    {
+        //        item.CalculateSubtotal();
+        //    }
+
+        //    await _orderRepository.AddAsync(order);
+        //    await _cartRepository.ClearCart(cartId); // Remove cart items
+
+        //    return order;
+        //}
     }
 }
 

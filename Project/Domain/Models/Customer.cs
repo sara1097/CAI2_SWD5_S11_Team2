@@ -22,8 +22,12 @@ namespace Domain.Models
 
         public virtual User User { get; set; }
         public virtual List<Order> Orders { get; set; }
-        public virtual List<Cart> Carts { get; set; }
-        public virtual List<Review> Reviews { get; set; }
+        public virtual Cart Cart { get; set; }
+        public virtual List<Review> Reviews { get; set; } = new List<Review>();
+
+        // Helper property to get only approved reviews
+        [NotMapped]
+        public IEnumerable<Review> ApprovedReviews => Reviews?.Where(r => r.Status == ReviewStatus.Approved) ?? Enumerable.Empty<Review>();
         public virtual List<CustomerFavoriteProduct> FavoriteProducts { get; set; } = new List<CustomerFavoriteProduct>();
     }
 }

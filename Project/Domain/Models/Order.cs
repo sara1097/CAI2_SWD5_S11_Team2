@@ -35,9 +35,6 @@ namespace Domain.Models
         public DateTime? ShippedDate { get; set; }
         public DateTime? DeliveredDate { get; set; }
 
-        [ForeignKey("Payment")]
-        public int? PaymentId { get; set; }
-
 
         public virtual Customer Customer { get; set; }
         public virtual Payment Payment { get; set; }

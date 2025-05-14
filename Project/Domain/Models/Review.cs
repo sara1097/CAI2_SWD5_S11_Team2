@@ -19,14 +19,26 @@ namespace Domain.Models
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
 
+        [Required]
+        [Range(1, 5)]
         public int Rating { get; set; }
 
+        [MaxLength(1000)]
         public string Comment { get; set; }
 
-        public DateTime ReviewDate { get; set; }
+        public DateTime ReviewDate { get; set; }= DateTime.Now;
+
+        [Required]
+        public ReviewStatus Status { get; set; } = ReviewStatus.Pending;
 
 
         public virtual Product Product { get; set; }
         public virtual Customer Customer { get; set; }
+    }
+    public enum ReviewStatus
+    {
+        Pending,    // Waiting for admin approval
+        Approved,   // Approved by admin and visible
+        Rejected    // Rejected by admin and not visible
     }
 }

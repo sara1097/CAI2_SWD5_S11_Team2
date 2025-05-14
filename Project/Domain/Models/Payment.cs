@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,9 @@ namespace Domain.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [ForeignKey("Order")]
+        public int OrderId { get; set; }
 
         public int Amount { get; set; }
 
@@ -25,6 +29,6 @@ namespace Domain.Models
         public string Currency { get; set; }
 
 
-        public virtual List<Order> Orders { get; set; }
+        public virtual Order Order { get; set; }
     }
 }
