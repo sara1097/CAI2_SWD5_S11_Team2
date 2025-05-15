@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Domain.Models.Order>
 @using Domain.Models
 @{
-    ViewData["Title"] = "Admin Orders"; ViewData["Description"] = "TechEcommerce";
+    ViewData["Title"] = "Orders Management"; ViewData["Description"] = "TechEcommerce";
 }
 
 <div class="container mt-150 mb-150">
@@ -28,7 +28,36 @@
 
                 <div class="card">
                     <div class="card-header " style="background-color:#fd7e14;">
-                    <h5 class="mb-0" style="color:#FFFAF2">Orders List</h5>
+                    @* <h5 class="mb-0" style="color:#FFFAF2">Orders List</h5> *@
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div style="color:#FFFAF2; font-size:20px">
+                            <i class="fas fa-table me-1"></i>
+                            Orders
+                        </div>
+
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="statusFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Filter: @(string.IsNullOrEmpty(ViewBag.CurrentFilter) || ViewBag.CurrentFilter == "all" ? "All" : ViewBag.CurrentFilter)
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="statusFilterDropdown">
+                                    <li>
+                                        <a class="dropdown-item @(ViewBag.CurrentFilter == "all" ? "active" : "")"
+                                           asp-controller="Admin" asp-action="Orders" asp-route-filter="all">All Orders</a>
+                                    </li>
+                                    @foreach (var status in Enum.GetValues(typeof(OrderStatus)))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item @(ViewBag.CurrentFilter?.ToString().ToLower() == status.ToString().ToLower() ? "active" : "")"
+                                               asp-controller="Admin" asp-action="Orders" asp-route-filter="@status">
+                                                @status
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+
+                    </div>
+
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

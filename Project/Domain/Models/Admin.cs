@@ -19,10 +19,5 @@ namespace Domain.Models
 
         public virtual User User { get; set; }
 
-        public virtual List<Order> Orders { get; set; } = new List<Order>();
-        public virtual List<Product> Products { get; set; } = new List<Product>();
-        public virtual List<Category> Categories { get; set; } = new List<Category>();
-        public virtual List<Review> Reviews { get; set; } = new List<Review>();
-
     }
 }

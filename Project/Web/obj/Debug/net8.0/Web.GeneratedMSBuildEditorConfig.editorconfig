@@ -44,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUHJvZHVjdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Mero_Projects/Depi_Projects/DEPI_Final_Project/CAI2_SWD5_S11_Team2/Project/Web/Views/Admin/Reviews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmV2aWV3cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Mero_Projects/Depi_Projects/DEPI_Final_Project/CAI2_SWD5_S11_Team2/Project/Web/Views/Customer/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQWJvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -62,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/Mero_Projects/Depi_Projects/DEPI_Final_Project/CAI2_SWD5_S11_Team2/Project/Web/Views/Order/OrderDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcT3JkZXJEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Mero_Projects/Depi_Projects/DEPI_Final_Project/CAI2_SWD5_S11_Team2/Project/Web/Views/Review/ReviewDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XFJldmlld0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Mero_Projects/Depi_Projects/DEPI_Final_Project/CAI2_SWD5_S11_Team2/Project/Web/Views/Shared/Error.cshtml]

@@ -31,7 +31,24 @@ namespace Core.Services
             };
 
             var orders = await _unitOfWork._order.GetAll(includes: includes);
-            return orders;
+            return orders.OrderByDescending(o => o.OrderDate).ToList();
+        }
+
+        public async Task<List<Order>> FilterByStatusAsync(OrderStatus status)
+        {
+            Expression<Func<Order, object>>[] includes = new Expression<Func<Order, object>>[]
+            {
+                o => o.Customer,
+                o => o.Payment
+            };
+
+
+            var orders = await _unitOfWork._order.GetAll(
+                criteria: r => r.Status == status,
+                includes: includes
+            );
+
+            return orders.OrderByDescending(r => r.OrderDate).ToList();
         }
 
         public async Task<Order> GetOrderWithDetailsAsync(int id)

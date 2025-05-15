@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250514185456_InitialMigrate")]
+    [Migration("20250514235449_InitialMigrate")]
     partial class InitialMigrate
     {
         /// <inheritdoc />
@@ -121,9 +121,6 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AdminId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -133,8 +130,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdminId");
 
                     b.ToTable("Categories");
                 });
@@ -186,9 +181,6 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AdminId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
@@ -222,8 +214,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdminId");
 
                     b.HasIndex("CustomerId");
 
@@ -324,9 +314,6 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AdminId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -356,8 +343,6 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdminId");
-
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("IsFeatured");
@@ -374,9 +359,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AdminId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -399,8 +381,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdminId");
 
                     b.HasIndex("CustomerId");
 
@@ -656,13 +636,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Domain.Models.Category", b =>
-                {
-                    b.HasOne("Domain.Models.Admin", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("AdminId");
-                });
-
             modelBuilder.Entity("Domain.Models.Customer", b =>
                 {
                     b.HasOne("Domain.Models.User", "User")
@@ -695,10 +668,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.Order", b =>
                 {
-                    b.HasOne("Domain.Models.Admin", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("AdminId");
-
                     b.HasOne("Domain.Models.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
@@ -740,10 +709,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.Product", b =>
                 {
-                    b.HasOne("Domain.Models.Admin", null)
-                        .WithMany("Products")
-                        .HasForeignKey("AdminId");
-
                     b.HasOne("Domain.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
@@ -755,10 +720,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.Review", b =>
                 {
-                    b.HasOne("Domain.Models.Admin", null)
-                        .WithMany("Reviews")
-                        .HasForeignKey("AdminId");
-
                     b.HasOne("Domain.Models.Customer", "Customer")
                         .WithMany("Reviews")
                         .HasForeignKey("CustomerId")
@@ -825,17 +786,6 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Models.Admin", b =>
-                {
-                    b.Navigation("Categories");
-
-                    b.Navigation("Orders");
-
-                    b.Navigation("Products");
-
-                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("Domain.Models.Cart", b =>

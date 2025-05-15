@@ -40,10 +40,14 @@
                                 @*     <a asp-area="" asp-controller="" asp-action="">Manage Products</a> *@
                                 @*     <a asp-area="" asp-controller="" asp-action="">Manage Categories</a> *@
                                 @* </li> *@
-                                <li><a asp-area="" asp-controller="Admin" asp-action="Products"> Products</a></li>
-                                <li><a asp-area="" asp-controller="" asp-action=""> Categories</a></li>
-                                <li><a asp-area="" asp-controller="Admin" asp-action="Orders"> Orders</a></li>
-                                <li><a asp-area="" asp-controller="" asp-action=""> Reviews</a></li>
+                                <li><a  asp-controller="Admin" asp-action="Products"> Products</a></li>
+                                <li><a  asp-controller="" asp-action=""> Categories</a></li>
+                                <li class="@(currentController == "Admin" && currentAction == "Orders" ? "active-orange" : "")">
+                                    <a  asp-controller="Admin" asp-action="Orders"> Orders</a>
+                                </li>
+                                <li class="@(currentController == "Admin" && currentAction == "Reviews" ? "active-orange" : "")">
+                                    <a  asp-controller="Admin" asp-action="Reviews"> Reviews</a>
+                                </li>
                                 <li class="current-list-item ">
                                     <form asp-controller="Account" asp-action="Logout" method="post">
                                         <button type="submit" style=" background-color:#1a1a1a; border:none">
