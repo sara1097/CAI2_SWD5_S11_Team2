@@ -1,0 +1,92 @@
+@model Domain.ViewModel.ProductViewModel
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h2 class="text-primary">@ViewData["Title"]</h2>
+<div class="container mt-150 mb-150">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="ImageUrl" type="hidden" />
+
+        <div class="border p-3 my-4">
+            <div class="row">
+                <div class="col-10">
+                    <div class="mb-3 row p-1">
+                        <label asp-for="Name" class="p-0"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-1">
+                        <label asp-for="Description" class="p-1"></label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-1">
+                        <label asp-for="Price" class="p-1"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-1">
+                        <label asp-for="Discount" class="p-1"></label>
+                        <input asp-for="Discount" class="form-control" />
+                        <span asp-validation-for="Discount" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-1">
+                        <label asp-for="StockQuantity" class="p-1"></label>
+                        <input asp-for="StockQuantity" class="form-control" />
+                        <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-1">
+                        <label asp-for="CategoryId" class="p-1"></label>
+                        <input asp-for="CategoryId" class="form-control" />
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 row p-1">
+                        <label asp-for="File" class="p-1">Upload New Image</label>
+                        <input asp-for="File" type="file" class="form-control" />
+                        <span asp-validation-for="File" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <button type="submit" class="btn btn-primary form-control">
+                                Update
+                            </button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a asp-action="Index" class="btn btn-outline-secondary form-control">Back To List</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2 text-center">
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <div class="border p-2 m-2">
+                            <img src="@Model.ImageUrl" width="100%"
+                                 style="border-radius:5px; border:1px solid #bbb9b9;" />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="border p-2 m-2">
+                            <span class="text-muted">No image uploaded</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

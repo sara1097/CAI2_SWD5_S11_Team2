@@ -1,0 +1,59 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Category Management";
+    ViewData["Description"] = "TechEcommerce";
+    Layout = "_Layout";
+}
+
+<div class="container mt-150 mb-50">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <h2 style="color:Black">Welcome, Admin!</h2>
+            <p style="color:Black">You are logged in as an Admin.</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8 offset-lg-2 text-center">
+        <a asp-controller="Category" asp-action="Create" class="cart-btn">
+            <i class="bi bi-plus-circle"></i> Create New Category
+        </a>
+    </div>
+</div>
+<div class="product-section mt-100 mb-150">
+    <div class="container">
+        
+
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h3><span class="orange-text">Our</span> Categories</h3>
+                    <p>Manage your product categories here.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            @foreach (var category in Model.OrderBy(u => u.Id))
+            {
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <h3>@category.Name</h3>
+                        <p>@category.Description</p>
+                        <div class="d-flex justify-content-center">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i>Edit
+                            </a>
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash"></i>Delete
+                            </a>
+                            <a asp-controller="Category" asp-action="ViewProducts" asp-route-id="@category.Id" class="btn cart-btn mx-2">
+                                <i class="bi bi-eye"></i>View Products
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
