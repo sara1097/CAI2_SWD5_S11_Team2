@@ -1,0 +1,170 @@
+﻿@model Domain.Models.Order
+@using Domain.Models
+
+@{
+    bool isPartial = Context.Request.Query.ContainsKey("partial") && Context.Request.Query["partial"] == "true";
+    Layout = isPartial ? null : "_Layout";
+
+    if (!isPartial)
+    {
+        ViewData["Title"] = "Order Details Customer";
+    }
+}
+
+@if (!isPartial)
+{
+    <div class="container-fluid mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1>Order Details</h1>
+            <a asp-controller="Order" asp-action="MyOrders" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Orders
+            </a>
+        </div>
+    </div>
+}
+
+
+<div class="container mt-150 mb-150">
+    <div class="row">
+        <!-- Left: Order Information -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Order Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-5 fw-bold">Order Number:</div>
+                        <div class="col-md-7">@Model.OrderNumber</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-5 fw-bold">Order Date:</div>
+                        <div class="col-md-7">@Model.OrderDate.ToString("MMM dd, yyyy HH:mm")</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-5 fw-bold">Status:</div>
+                        <div class="col-md-7">
+                            <span class="badge @GetStatusBadgeClass(Model.Status)">
+                                @Model.Status
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-5 fw-bold">Shipped Date:</div>
+                        <div class="col-md-7">
+                            @(Model.ShippedDate.HasValue ? Model.ShippedDate.Value.ToString("MMM dd, yyyy") : "Not shipped yet")
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-5 fw-bold">Delivered Date:</div>
+                        <div class="col-md-7">
+                            @(Model.DeliveredDate.HasValue ? Model.DeliveredDate.Value.ToString("MMM dd, yyyy") : "Not delivered yet")
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-5 fw-bold">Total Amount:</div>
+                        <div class="col-md-7">@Model.TotalAmount.ToString("C")</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Order Items Table -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">Order Items</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-sm align-middle text-center">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Product</th>
+                                    <th>Unit Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.OrderItems != null && Model.OrderItems.Any())
+                                {
+                                    foreach (var item in Model.OrderItems)
+                                    {
+                                        <tr>
+                                            <td>@item.ProductId</td>
+                                            <td>@(item.Product?.Name)</td>
+                                            <td>@item.UnitPrice.ToString("C")</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.SubtotalAmount.ToString("C")</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="5" class="text-center text-muted">No items found for this order</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr class="table-dark">
+                                    <th colspan="4" class="text-end">Total:</th>
+                                    <th>@Model.TotalAmount.ToString("C")</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@if (!isPartial)
+{
+    @section Styles {
+    <style>
+        .dropdown-item-form {
+            margin: 0;
+            padding: 0;
+        }
+
+            .dropdown-item-form .dropdown-item {
+                padding: 0.25rem 1.5rem;
+                cursor: pointer;
+                width: 100%;
+                text-align: left;
+                background: none;
+                border: none;
+            }
+
+                .dropdown-item-form .dropdown-item:hover {
+                    background-color: #f8f9fa;
+                }
+
+                .dropdown-item-form .dropdown-item.active {
+                    background-color: #e9ecef;
+                    font-weight: bold;
+                }
+    </style>
+    }
+}
+
+@functions {
+    string GetStatusBadgeClass(OrderStatus status)
+    {
+        return status switch
+        {
+            OrderStatus.Pending => "bg-warning text-dark",
+            OrderStatus.Processing => "bg-info",
+            OrderStatus.Shipped => "bg-primary",
+            OrderStatus.Delivered => "bg-success",
+            OrderStatus.Cancelled => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+}

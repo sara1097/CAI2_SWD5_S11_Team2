@@ -96,8 +96,6 @@
                                     }
                                 </ul>
                             </div>
-
-                            <!-- Cancel Order Button -->
                             @if (Model.Status == OrderStatus.Pending || Model.Status == OrderStatus.Processing)
                             {
                                 <form asp-controller="Order" asp-action="Cancel" method="post">
@@ -177,8 +175,7 @@
                         <tr>
                             <th>Product ID</th>
                             <th>Product</th>
-                            <th>Color</th>
-                            <th>Size</th>
+
                             <th>Unit Price</th>
                             <th>Quantity</th>
                             <th>Subtotal</th>
@@ -191,7 +188,8 @@
                             {
                                 <tr>
                                     <td>@item.ProductId</td>
-                                    <td>@(item.Product?.Id)</td>
+                                    <td>@(item.Product?.Name)</td>
+
                                     <td>@item.UnitPrice.ToString("C")</td>
                                     <td>@item.Quantity</td>
                                     <td>@item.SubtotalAmount.ToString("C")</td>
@@ -220,30 +218,30 @@
 @if (!isPartial)
 {
     @section Styles {
-        <style>
-            .dropdown-item-form {
-                margin: 0;
-                padding: 0;
+    <style>
+        .dropdown-item-form {
+            margin: 0;
+            padding: 0;
+        }
+
+            .dropdown-item-form .dropdown-item {
+                padding: 0.25rem 1.5rem;
+                cursor: pointer;
+                width: 100%;
+                text-align: left;
+                background: none;
+                border: none;
             }
 
-                .dropdown-item-form .dropdown-item {
-                    padding: 0.25rem 1.5rem;
-                    cursor: pointer;
-                    width: 100%;
-                    text-align: left;
-                    background: none;
-                    border: none;
+                .dropdown-item-form .dropdown-item:hover {
+                    background-color: #f8f9fa;
                 }
 
-                    .dropdown-item-form .dropdown-item:hover {
-                        background-color: #f8f9fa;
-                    }
-
-                    .dropdown-item-form .dropdown-item.active {
-                        background-color: #e9ecef;
-                        font-weight: bold;
-                    }
-        </style>
+                .dropdown-item-form .dropdown-item.active {
+                    background-color: #e9ecef;
+                    font-weight: bold;
+                }
+    </style>
     }
 }
 

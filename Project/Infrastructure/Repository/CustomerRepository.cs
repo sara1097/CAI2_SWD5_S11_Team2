@@ -19,18 +19,21 @@ namespace Infrastructure.Repository
             _context = context;
         }
 
-        //public async Task<Customer> GetByUserIdAsync(int userId)
-        //{
-        //    var customer = await _context.Customers
-        //        .FirstOrDefaultAsync(c => c.UserId == userId);
+        public async Task<Customer> GetByUserIdAsync(string userId)
+        {
+            // Explicitly convert to string if needed
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(c => c.UserId.Equals(userId));
 
-        //    if (customer != null)
-        //    {
-        //        _context.Entry(customer).Reference(c => c.User).Load(); // object
-        //    }
+            if (customer != null)
+            {
+                await _context.Entry(customer)
+                    .Reference(c => c.User)
+                    .LoadAsync(); // Using async version
+            }
 
-        //    return customer;
-        //}
+            return customer;
+        }
 
         //public async Task<Customer> GetCustomerWithOrdersAsync(int id)
         //{

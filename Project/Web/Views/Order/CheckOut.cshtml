@@ -1,0 +1,141 @@
+﻿@model Domain.Models.Order
+@using Domain.Models
+
+@{
+    bool isPartial = Context.Request.Query.ContainsKey("partial") && Context.Request.Query["partial"] == "true";
+    Layout = isPartial ? null : "_Layout";
+
+    if (!isPartial)
+    {
+        ViewData["Title"] = "Check Out";
+    }
+}
+
+@if (!isPartial)
+{
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Fresh and Organic</p>
+                        <h1>Check Out Product</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="checkout-section mt-150 mb-150">
+    <div class="container">
+        <form asp-action="SubmitOrder" method="post">
+            <div class="row">
+                <!-- Left section (Form Fields) -->
+                <div class="col-lg-8">
+                    <div class="checkout-accordion-wrap">
+                        <div class="accordion" id="accordionExample">
+                            <!-- Billing -->
+                            <div class="card single-accordion">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true">
+                                            Billing Address
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="billing-address-form">
+                                            @* <p><input asp-for="BillingName" class="form-control" placeholder="Name" /></p> *@
+                                            @* <p><input asp-for="BillingEmail" class="form-control" placeholder="Email" /></p> *@
+                                            @* <p><input asp-for="BillingAddress" class="form-control" placeholder="Address" /></p> *@
+                                            @* <p><input asp-for="BillingPhone" class="form-control" placeholder="Phone" /></p> *@
+                                            @* <p><textarea asp-for="AdditionalNotes" class="form-control" rows="4" placeholder="Say Something"></textarea></p> *@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Shipping -->
+                            <div class="card single-accordion">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo">
+                                            Shipping Address
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shipping-address-form">
+                                            <p><input asp-for="ShippingAddress" class="form-control" placeholder="Shipping Address" /></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card -->
+                            <div class="card single-accordion">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree">
+                                            Card Details
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="card-details">
+                                            @* <p><input asp-for="CardNumber" class="form-control" placeholder="Card Number" /></p> *@
+                                            @* <p><input asp-for="CardExpiry" class="form-control" placeholder="MM/YY" /></p> *@
+                                            @* <p><input asp-for="CardCVV" class="form-control" placeholder="CVV" /></p> *@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right section (Order Summary) -->
+                <div class="col-lg-4">
+                    <div class="order-details-wrap">
+                        <table class="order-details">
+                            <thead>
+                                <tr>
+                                    <th>Your order Details</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            @* <tbody class="order-details-body"> *@
+                            @*     @foreach (var item in Model.Items) *@
+                            @*     { *@
+                            @*         <tr> *@
+                            @*             <td>@item.ProductName</td> *@
+                            @*             <td>@item.TotalPrice.ToString("C")</td> *@
+                            @*         </tr> *@
+                            @*     } *@
+                            @* </tbody> *@
+                            @* <tbody class="checkout-details"> *@
+                            @*     <tr> *@
+                            @*         <td>Subtotal</td> *@
+                            @*         <td>@Model.Subtotal.ToString("C")</td> *@
+                            @*     </tr> *@
+                            @*     <tr> *@
+                            @*         <td>Shipping</td> *@
+                            @*         <td>@Model.Shipping.ToString("C")</td> *@
+                            @*     </tr> *@
+                            @*     <tr> *@
+                            @*         <td>Total</td> *@
+                            @*         <td>@Model.Total.ToString("C")</td> *@
+                            @*     </tr> *@
+                            @* </tbody> *@
+                        </table>
+                        <button type="submit" class="boxed-btn mt-4">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

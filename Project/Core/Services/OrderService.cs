@@ -8,17 +8,20 @@ using Core.Services;
 using Domain.Models;
 using Infrastructure.IRepository;
 using Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Services
 {
-    public class OrderService 
+    public class OrderService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IOrderRepository _orderRepository;
         //private readonly CartService _cartService;
 
-        public OrderService(IUnitOfWork unitOfWork)
+        public OrderService(IUnitOfWork unitOfWork, IOrderRepository orderRepository)
         {
             _unitOfWork = unitOfWork;
+            _orderRepository = orderRepository;
             //_cartService = cartService;
         }
 
@@ -33,6 +36,13 @@ namespace Core.Services
             var orders = await _unitOfWork._order.GetAll(includes: includes);
             return orders.OrderByDescending(o => o.OrderDate).ToList();
         }
+
+        public Task<List<Order>> GetUserOrdersAsync(int userId)
+        {
+            return _orderRepository.GetOrdersByCustomerAsync(userId);
+        }
+
+
 
         public async Task<List<Order>> FilterByStatusAsync(OrderStatus status)
         {

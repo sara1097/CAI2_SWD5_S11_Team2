@@ -9,7 +9,7 @@ namespace Infrastructure.IRepository
 {
     public interface ICustomerRepository 
     {
-        //Task<Customer> GetByUserIdAsync(int userId);
+        Task<Customer> GetByUserIdAsync(string userId);
         //Task<Customer> GetCustomerWithOrdersAsync(int id);
     }
 }
