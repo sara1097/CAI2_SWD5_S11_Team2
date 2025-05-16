@@ -38,6 +38,8 @@ namespace Infrastructure.Repository
         public async Task<Cart> GetCartWithItemsAsync(int id)
         {
             var cart = await _context.Carts
+                .Include(c => c.CartItems)
+                .ThenInclude(ci => ci.Product)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (cart != null)

@@ -1,0 +1,128 @@
+﻿@model Domain.Models.Cart
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Review your</p>
+                    <h1>Shopping Cart</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<!-- cart -->
+<div class="cart-section mt-150 mb-150">
+    <div class="container">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="cart-table-wrap">
+                    @if (Model?.CartItems?.Any() == true)
+                    {
+                        <table class="cart-table">
+                            <thead class="cart-table-head">
+                                <tr class="table-head-row">
+                                    <th class="product-remove"></th>
+                                    <th class="product-image">Product Image</th>
+                                    <th class="product-name">Name</th>
+                                    <th class="product-price">Price</th>
+                                    <th class="product-quantity">Quantity</th>
+                                    <th class="product-total">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.CartItems)
+                                {
+                                    <tr class="table-body-row">
+                                        <td class="product-remove">
+                                            <form asp-action="RemoveFromCart" method="post">
+                                                <input type="hidden" name="cartItemId" value="@item.Id" />
+                                                <button type="submit" class="btn btn-link p-0 border-0 bg-transparent">
+                                                    <i class="far fa-window-close"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td class="product-image">
+                                            <img src="@item.Product.ImageUrl" alt="@item.Product.Name">
+                                        </td>
+                                        <td class="product-name">
+                                            @item.Product.Name
+                                            @if (!item.IsInStock)
+                                            {
+                                                <div class="text-danger"><small>Out of stock</small></div>
+                                            }
+                                        </td>
+                                        <td class="product-price">$@item.UnitPrice.ToString("N2")</td>
+                                        <td class="product-quantity">
+                                            <form asp-action="UpdateCartItem" method="post" class="d-flex">
+                                                <input type="hidden" name="cartItemId" value="@item.Id" />
+                                                <input type="number" name="quantity" value="@item.Quantity" min="1"
+                                                       class="form-control" style="width: 70px;" />
+                                                <button type="submit" class="btn btn-sm btn-primary ml-2">Update</button>
+                                            </form>
+                                        </td>
+                                        <td class="product-total">$@item.SubtotalAmount.ToString("N2")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            Your cart is empty. <a href="/Customer">Continue shopping</a>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @if (Model?.CartItems?.Any() == true)
+            {
+                <div class="col-lg-4">
+                    <div class="total-section">
+                        <table class="total-table">
+                            <thead class="total-table-head">
+                                <tr class="table-total-row">
+                                    <th>Total</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="total-data">
+                                    <td><strong>Subtotal: </strong></td>
+                                    <td>$@Model.TotalAmount.ToString("N2")</td>
+                                </tr>
+                                <tr class="total-data">
+                                    <td><strong>Shipping: </strong></td>
+                                    <td>$0.00</td>
+                                </tr>
+                                <tr class="total-data">
+                                    <td><strong>Total: </strong></td>
+                                    <td>$@Model.TotalAmount.ToString("N2")</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="cart-buttons">
+                            <a href="/Home" class="boxed-btn">Continue Shopping</a>
+                            <a href="/Checkout" class="boxed-btn black">Check Out</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- end cart -->

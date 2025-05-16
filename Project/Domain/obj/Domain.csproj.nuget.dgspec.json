@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {}
+    "C:\\Users\\user\\source\\repos\\sara1097\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
+    "C:\\Users\\user\\source\\repos\\sara1097\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\sara1097\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\malawy\\.nuget\\packages\\",
-        "outputPath": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\user\\source\\repos\\sara1097\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\sara1097\\CAI2_SWD5_S11_Team2\\Project\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "F:\\microsoft visual studio\\shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\malawy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -84,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

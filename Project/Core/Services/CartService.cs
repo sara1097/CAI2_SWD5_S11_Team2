@@ -21,8 +21,8 @@ namespace Core.Services
 
         public async Task<Cart> GetCartByCustomerIdAsync(int customerId)
         {
-            var carts = await _unitOfWork._cart.Search(c => c.CustomerId == customerId);
-            return carts.FirstOrDefault() ?? await CreateNewCartAsync(customerId);
+            var cart = await _unitOfWork._cartRepo.GetCartWithItemsAsync(customerId);
+            return cart ?? await CreateNewCartAsync(customerId);
         }
 
         private async Task<Cart> CreateNewCartAsync(int customerId)
@@ -40,13 +40,19 @@ namespace Core.Services
             return cart;
         }
 
-        public async Task AddToCartAsync(int customerId, int productId, int quantity, string color, string size)
+        public async Task AddToCartAsync(int customerId, int productId, int quantity)
         {
             var cart = await GetCartByCustomerIdAsync(customerId);
             var product = await _productService.GetProductByIdAsync(productId);
 
             if (product == null || product.StockQuantity < quantity)
                 throw new Exception("Product not available in requested quantity");
+
+            if (product.StockQuantity < quantity)
+                throw new Exception($"Only {product.StockQuantity} items available");
+
+            if (cart.CartItems == null)
+                cart.CartItems = new List<CartItem>();
 
             var existingItem = cart.CartItems.FirstOrDefault(ci =>
                 ci.ProductId == productId );
@@ -156,8 +162,8 @@ namespace Core.Services
 
         private async Task UpdateCartTotalsAsync(Cart cart)
         {
-            cart.ItemCount = cart.CartItems.Sum(ci => ci.Quantity);
-            cart.TotalAmount = cart.CartItems.Sum(ci => ci.SubtotalAmount);
+            cart.ItemCount = cart.CartItems?.Sum(ci => ci.Quantity) ?? 0;
+            cart.TotalAmount = cart.CartItems?.Sum(ci => ci.SubtotalAmount) ?? 0;
 
             _unitOfWork._cart.Update(cart);
             await _unitOfWork.CompleteAsync();

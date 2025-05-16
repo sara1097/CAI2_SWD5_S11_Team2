@@ -18,7 +18,35 @@ namespace Infrastructure.Repository
         {
             _context = context;
         }
+        public async Task<Customer> GetByUserIdAsync(string userId)
+        {
+            // Explicitly convert to string if needed
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(c => c.UserId.Equals(userId));
 
+            if (customer != null)
+            {
+                await _context.Entry(customer)
+                    .Reference(c => c.User)
+                    .LoadAsync(); // Using async version
+            }
+
+            return customer;
+        }
+        public async Task<Cart> CreateNewCartAsync(int customerId)
+        {
+            var cart = new Cart
+            {
+                CustomerId = customerId,
+                ItemCount = 0,
+                TotalAmount = 0,
+                CartItems = new List<CartItem>()
+            };
+
+            await _context.Carts.AddAsync(cart);
+            await _context.SaveChangesAsync();
+            return cart;
+        }
         //public async Task<Customer> GetByUserIdAsync(int userId)
         //{
         //    var customer = await _context.Customers

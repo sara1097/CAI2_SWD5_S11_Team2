@@ -26,7 +26,7 @@ namespace Infrastructure.IRepository
         // interfaces
         IProductRepository _productRepo { get; }
         ICategoryRepository _categoryRepo { get; }
-
+        ICartRepository _cartRepo { get; }  
         int Complete();
         Task<int> CompleteAsync();
 
