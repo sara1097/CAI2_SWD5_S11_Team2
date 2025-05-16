@@ -26,91 +26,72 @@ namespace Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure User -> Admin (one-to-one)
             modelBuilder.Entity<Admin>()
                 .HasOne(a => a.User)
-                .WithOne(u => u.Admin) // ✅ specify inverse property
+                .WithOne(u => u.Admin)
                 .HasForeignKey<Admin>(a => a.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Configure User -> Customer (one-to-one)
             modelBuilder.Entity<Customer>()
                 .HasOne(c => c.User)
                 .WithOne(u => u.Customer)
                 .HasForeignKey<Customer>(c => c.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Customer -> Order (one-to-many)
             modelBuilder.Entity<Order>()
                 .HasOne(o => o.Customer)
                 .WithMany(c => c.Orders)
                 .HasForeignKey(o => o.CustomerId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Customer -> Cart (one-to-one) - Typically a customer has one active cart
             modelBuilder.Entity<Cart>()
                 .HasOne(c => c.Customer)
                 .WithOne(c => c.Cart)
                 .HasForeignKey<Cart>(c => c.CustomerId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Cart -> CartItem (one-to-many)
             modelBuilder.Entity<CartItem>()
                 .HasOne(ci => ci.Cart)
                 .WithMany(c => c.CartItems)
                 .HasForeignKey(ci => ci.CartId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Product -> OrderItem (one-to-many)
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.Product)
                 .WithMany(p => p.OrderItems)
                 .HasForeignKey(oi => oi.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Product -> OrderItem (one-to-many)
-            modelBuilder.Entity<OrderItem>()
-                .HasOne(oi => oi.Product)
-                .WithMany(p => p.OrderItems)
-                .HasForeignKey(oi => oi.ProductId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            // Product -> CartItem (one-to-many)
             modelBuilder.Entity<CartItem>()
                 .HasOne(ci => ci.Product)
                 .WithMany(p => p.CartItems)
                 .HasForeignKey(ci => ci.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Category -> Product (one-to-many)
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Customer -> Review (one-to-many)
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Customer)
                 .WithMany(c => c.Reviews)
                 .HasForeignKey(r => r.CustomerId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Product -> Review (one-to-many)
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Product)
                 .WithMany(p => p.Reviews)
                 .HasForeignKey(r => r.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //  Payment-> Order (one-to-one)
             modelBuilder.Entity<Payment>()
                 .HasOne(p => p.Order)
                 .WithOne(o => o.Payment)
                 .HasForeignKey<Payment>(p => p.OrderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Customer -> FavoriteProducts (many-to-many)
             modelBuilder.Entity<CustomerFavoriteProduct>(entity =>
             {
                 entity.HasKey(cf => new { cf.CustomerId, cf.ProductId });
@@ -126,12 +107,15 @@ namespace Infrastructure.Data
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            // Indexes
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasIndex(p => p.Name);
                 entity.HasIndex(p => p.CategoryId);
                 entity.HasIndex(p => p.IsFeatured);
+
+                // Decimal precision fix for Price and Discount
+                entity.Property(p => p.Price).HasPrecision(18, 2);
+                entity.Property(p => p.Discount).HasPrecision(5, 2);
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -140,17 +124,17 @@ namespace Infrastructure.Data
                 entity.HasIndex(o => o.CustomerId);
                 entity.HasIndex(o => o.OrderDate);
                 entity.HasIndex(o => o.Status);
+
+                // Decimal precision fix for TotalAmount
+                entity.Property(o => o.TotalAmount).HasPrecision(18, 2);
             });
 
-
-            // Seeding Category data
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Electronics", Description = "Devices and gadgets" },
                 new Category { Id = 2, Name = "Books", Description = "All kinds of books" },
                 new Category { Id = 3, Name = "Clothing", Description = "Men and Women clothing" }
             );
 
-            // Seeding Product data
             modelBuilder.Entity<Product>().HasData(
                 new Product { Id = 1, Name = "Laptop", Description = "High-performance laptop", Price = 999.99m, Discount = 0.10m, ImageUrl = "~/assets/img/products/laptop.jpg", StockQuantity = 10, CategoryId = 1, IsFeatured = true },
                 new Product { Id = 2, Name = "Smartphone", Description = "Latest smartphone model", Price = 699.99m, Discount = 0.05m, ImageUrl = "~/assets/img/products/smartphone.jpg", StockQuantity = 15, CategoryId = 1, IsFeatured = true },

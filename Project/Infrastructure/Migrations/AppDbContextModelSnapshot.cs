@@ -220,6 +220,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalAmount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -323,6 +324,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Discount")
+                        .HasPrecision(5, 2)
                         .HasColumnType("decimal(2,2)");
 
                     b.Property<string>("ImageUrl")
@@ -337,6 +339,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("StockQuantity")
