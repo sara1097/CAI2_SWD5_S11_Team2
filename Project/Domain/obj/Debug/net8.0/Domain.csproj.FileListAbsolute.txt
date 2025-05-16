@@ -11,3 +11,16 @@ D:\github project\depi project\CAI2_SWD5_S11_Team2\CAI2_SWD5_S11_Team2\Project\D
 D:\github project\depi project\CAI2_SWD5_S11_Team2\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\refint\Domain.dll
 D:\github project\depi project\CAI2_SWD5_S11_Team2\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.pdb
 D:\github project\depi project\CAI2_SWD5_S11_Team2\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\ref\Domain.dll
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\bin\Debug\net8.0\Domain.deps.json
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\bin\Debug\net8.0\Domain.dll
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\bin\Debug\net8.0\Domain.pdb
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.dll
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\refint\Domain.dll
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.pdb
+E:\Mero_Projects\Depi_Projects\DEPI_Final_Project\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\ref\Domain.dll

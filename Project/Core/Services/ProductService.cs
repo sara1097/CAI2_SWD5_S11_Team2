@@ -128,6 +128,61 @@ namespace Core.Services
             return favorites.Any();
         }
 
-        
+        public async Task<bool> ApplyDiscountAsync(int productId, decimal discountPercentage)
+        {
+            try
+            {
+                // Get the product
+                var product = await _unitOfWork._product.GetById(productId);
+                if (product == null)
+                    return false;
+
+                // Validate discount percentage
+                if (discountPercentage < 0 || discountPercentage > 100)
+                    return false;
+
+                // Apply discount or remove it if 0
+                if (discountPercentage > 0)
+                {
+                    // Convert from percentage (e.g., 25%) to decimal (0.25)
+                    product.Discount = discountPercentage / 100m;
+                    product.Price = product.Price - (product.Price * product.Discount.Value);
+                }
+                else
+                {
+                    product.Discount = null;
+                }
+
+                // Update product and save changes
+                _unitOfWork._product.Update(product);
+                return await _unitOfWork.CompleteAsync() > 0;
+            }
+            catch (Exception)
+            {
+                // Log exception here if needed
+                return false;
+            }
+        }
+
+        public async Task<bool> RemoveDiscountAsync(int productId)
+        {
+            try
+            {
+                var product = await _unitOfWork._product.GetById(productId);
+                if (product == null)
+                    return false;
+
+                product.Discount = null;
+                _unitOfWork._product.Update(product);
+                return await _unitOfWork.CompleteAsync() > 0;
+            }
+            catch (Exception)
+            {
+                // Log exception here if needed
+                return false;
+            }
+        }
+
+
     }
 }

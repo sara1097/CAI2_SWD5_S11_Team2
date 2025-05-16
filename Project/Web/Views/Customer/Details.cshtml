@@ -20,7 +20,7 @@
             <div class="py-3">
                 <div class="row">
                     <div class="col-6 col-md-2 offset-lg-1 pb-1">
-                        <a asp-action="Index" asp-controller="Customer"  class="cart-btn">
+                        <a asp-action="Index" asp-controller="Customer" class="cart-btn">
                             <small>Back to Products</small>
                         </a>
                     </div>
@@ -28,12 +28,12 @@
 
                 <div class="row">
                     <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
-                        <img src="@Url.Content(Model.ImageUrl ?? "~/assets/img/products/no-image.png")" style="width:100%; height:200px; object-fit:cover;"  />
+                        <img src="@Url.Content(Model.ImageUrl ?? "~/assets/img/products/no-image.png")" style="width:100%; height:200px; object-fit:cover;" />
                     </div>
 
                     <div class="col-12 col-lg-6 offset-lg-1">
                         <div class="col-12 col-md-6 pb-4">
-                           @* <span class="badge bg-warning text-dark">@Model.Category?.Name</span> *@
+                            @* <span class="badge bg-warning text-dark">@Model.Category?.Name</span> *@
                         </div>
                         <div class="row ps-2">
                             <h6 class="text-dark text-opacity-50">Product Name: @Model.Name</h6>
@@ -54,9 +54,9 @@
                             <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
                                 <div class="text-dark text-opacity-50 fw-semibold">StockQuantity</div>
                             </div>
-                            <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
+                            @* <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
                                 <div class="text-dark text-opacity-50 fw-semibold">IsFeatured</div>
-                            </div>
+                            </div> *@
                             <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
                                 <div class="text-dark text-opacity-50 fw-semibold">Discount</div>
                             </div>
@@ -67,16 +67,36 @@
                                 <div>Price</div>
                             </div> *@
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Price</div>
+                                @* <div>@Model.Price</div> *@
+                                @if (Model.Discount.HasValue && Model.Discount.Value > 0)
+                                {
+                                    decimal discountedPrice = Model.Price - (Model.Price * Model.Discount.Value);
+                                    <del>@Model.Price.ToString("C")</del>
+                                    <span class="text-success fw-bold ms-2">@discountedPrice.ToString("C")</span>
+                                    <br />
+                                    <span class="badge bg-success">@(Model.Discount.Value * 100)% OFF</span>
+                                }
+                                else
+                                {
+                                    <div class="text-dark text-opacity-50 fw-semibold">No Discount</div>
+                                }
                             </div>
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
                                 <div>@Model.StockQuantity</div>
                             </div>
-                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
+                            @* <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
                                 <div>@Model.IsFeatured</div>
-                            </div>
-                              <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Discount</div>
+                            </div> *@
+                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
+                                @* <div>@Model.Discount</div> *@
+                                @if (Model.Discount.HasValue && Model.Discount.Value > 0)
+                                {
+                                        <div>@Model.Discount</div>
+                                }
+                                else
+                                {
+                                        <div>No discount</div>
+                                }
                             </div>
                         </div>
 
@@ -100,7 +120,7 @@
 
                         <div class="row">
                             <div class="col-12 col-md-6 pb-1">
-                               <a asp-controller="Shop" asp-action="AddToCart" asp-route-id="@Model.Id" class="cart-btn">Add to Cart</a>
+                                <a asp-controller="Shop" asp-action="AddToCart" asp-route-id="@Model.Id" class="cart-btn">Add to Cart</a>
 
                             </div>
                         </div>
@@ -108,5 +128,13 @@
                 </div>
             </div>
         </div>
-     </div>
+    </div>
+
 </form>
+
+
+
+
+
+
+

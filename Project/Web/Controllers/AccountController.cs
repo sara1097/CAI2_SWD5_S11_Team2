@@ -105,7 +105,7 @@ namespace Web.Controllers
                     if (roles.Contains("Admin"))
                     {
                         //return RedirectToAction("Dashboard", "Admin");
-                        return RedirectToAction("Products", "Admin");
+                        return RedirectToAction("Index", "Product");
                     }
                     else if (roles.Contains("Customer"))
                     {

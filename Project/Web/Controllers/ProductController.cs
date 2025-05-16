@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Infrasitructure.Helpers;
 using Domain.ViewModel;
 using Infrastructure.IRepository;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace Web.Controllers
@@ -40,7 +41,8 @@ namespace Web.Controllers
         {
             var productViewModel = new ProductViewModel
             {
-                Categories = (await _categoryService.GetCategoriesWithSelectListItem()).ToList()
+                Categories = await _categoryService.GetCategoriesWithSelectListItem()
+
             };
             return View(productViewModel);
         }
@@ -51,7 +53,7 @@ namespace Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                productViewModel.Categories = (await _categoryService.GetCategoriesWithSelectListItem()).ToList();
+                productViewModel.Categories = await _categoryService.GetCategoriesWithSelectListItem();
                 return View(productViewModel);
             }
 
@@ -93,12 +95,12 @@ namespace Web.Controllers
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
-                Discount = product.Discount,
+                Discount = (decimal)product.Discount,
                 StockQuantity = product.StockQuantity,
                 CategoryId = product.CategoryId,
 
                 ImageUrl = product.ImageUrl,
-                Categories = (await _categoryService.GetCategoriesWithSelectListItem()).ToList()
+                Categories = (List<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)await _categoryService.GetCategoriesWithSelectListItem()
 
             };
 
@@ -110,7 +112,7 @@ namespace Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                vm.Categories = (await _categoryService.GetCategoriesWithSelectListItem()).ToList();
+                vm.Categories = (List<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)await _categoryService.GetCategoriesWithSelectListItem();
                 return View(vm);
             }
 
@@ -155,6 +157,18 @@ namespace Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+
+
+        // POST: Product/ApplyDiscount
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ApplyDiscount(int id, decimal discountPercentage)
+        {
+            // Call the service method to apply discount
+            await _productService.ApplyDiscountAsync(id, discountPercentage);
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }

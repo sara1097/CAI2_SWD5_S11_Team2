@@ -1,16 +1,13 @@
 @model List<Domain.Models.Product>
-
 @{
     ViewData["Title"] = "Products Management";
     ViewData["Description"] = "TechEcommerce";
 }
-
 <div class="container mt-150 mb-150">
     <div class="row">
         <div class="col-lg-8 offset-lg-2 text-center">
             <h2 style="color:Black">Welcome, Admin!</h2>
             <p style="color:Black">You are logged in as an Admin.</p>
-
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <a asp-controller="Product" asp-action="Create" class="cart-btn">
@@ -21,7 +18,6 @@
         </div>
     </div>
 </div>
-
 <div class="product-section mt-150 mb-150">
     <div class="container">
         <div class="row">
@@ -32,7 +28,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             @if (Model == null || !Model.Any())
             {
@@ -55,18 +50,28 @@
                             <h3>@product.Name</h3>
                             <p class="product-price">
                                 <span>Per Unit</span>
-                                @product.Price.ToString("C")
+                                @if (product.Discount.HasValue && product.Discount.Value > 0)
+                                {
+                                    decimal discountedPrice = product.Price - (product.Price * product.Discount.Value);
+                                    <del>@product.Price.ToString("C")</del>
+                                    <span class="text-success fw-bold">@discountedPrice.ToString("C") (@(product.Discount.Value * 100)%% off)</span>
+                                }
+                                else
+                                {
+                                    @product.Price.ToString("C")
+                                }
                             </p>
-
                             <div class="btn-group" role="group" aria-label="Actions">
                                 <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary btn-sm mx-2">Edit</a>
-
+                                <button type="button" class="btn btn-success btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#discountModal"
+                                        data-product-id="@product.Id" data-product-name="@product.Name" data-product-price="@product.Price"
+                                        data-product-discount="@(product.Discount.HasValue ? product.Discount.Value * 100 : 0)">
+                                    @(product.Discount.HasValue && product.Discount.Value > 0 ? "Edit Discount" : "Add Discount")
+                                </button>
                                 <form asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" method="post" style="display:inline-block;">
                                     <button type="submit" class="btn btn-danger btn-sm mx-2" onclick="return confirm('Are you sure you want to delete this product?');">Delete</button>
                                 </form>
-
                             </div>
-
                         </div>
                     </div>
                     index++;
@@ -75,3 +80,83 @@
         </div>
     </div>
 </div>
+
+<!-- Discount Modal -->
+<div class="modal fade" id="discountModal" tabindex="-1" aria-labelledby="discountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="discountModalLabel">Apply Discount</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-controller="Product" asp-action="ApplyDiscount" method="post">
+                <div class="modal-body">
+                    <input type="hidden" id="productId" name="id" />
+                    <div class="mb-3">
+                        <label for="productName" class="form-label">Product</label>
+                        <input type="text" class="form-control" id="productName" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="productPrice" class="form-label">Price</label>
+                        <input type="text" class="form-control" id="productPrice" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="discountPercentage" class="form-label">Discount Percentage (%)</label>
+                        <input type="number" class="form-control" id="discountPercentage" name="discountPercentage" min="0" max="100" step="0.01" required />
+                        <div class="form-text">Enter a value between 0 and 100. Enter 0 to remove discount.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="discountedPrice" class="form-label">Price After Discount</label>
+                        <input type="text" class="form-control" id="discountedPrice" readonly />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Apply Discount</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const discountModal = document.getElementById('discountModal');
+            if (discountModal) {
+                discountModal.addEventListener('show.bs.modal', function(event) {
+                    const button = event.relatedTarget;
+                    const productId = button.getAttribute('data-product-id');
+                    const productName = button.getAttribute('data-product-name');
+                    const productPrice = parseFloat(button.getAttribute('data-product-price'));
+                    const currentDiscount = parseFloat(button.getAttribute('data-product-discount'));
+
+                    document.getElementById('productId').value = productId;
+                    document.getElementById('productName').value = productName;
+                    document.getElementById('productPrice').value = new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD'
+                    }).format(productPrice);
+                    document.getElementById('discountPercentage').value = currentDiscount;
+
+                    // Calculate initial discounted price
+                    updateDiscountedPrice(productPrice, currentDiscount);
+
+                    // Set up event listener for discount percentage changes
+                    document.getElementById('discountPercentage').addEventListener('input', function() {
+                        const discountValue = parseFloat(this.value) || 0;
+                        updateDiscountedPrice(productPrice, discountValue);
+                    });
+                });
+            }
+
+            function updateDiscountedPrice(price, discountPercentage) {
+                const discountedPrice = price - (price * (discountPercentage / 100));
+                document.getElementById('discountedPrice').value = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD'
+                }).format(discountedPrice);
+            }
+        });
+    </script>
+}

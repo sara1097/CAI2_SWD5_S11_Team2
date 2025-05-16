@@ -1,0 +1,75 @@
+﻿@model List<Domain.Models.Product>
+
+@{
+    ViewData["Title"] = "Admin Customer";
+    ViewData["Description"] = "TechEcommerce";
+}
+
+<div class="container mt-150 mb-150" style="padding:50px">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <h2 style="color:Black">Welcome, Customer!</h2>
+            <p style="color:Black">You are logged in as a Customer.</p>
+        </div>
+    </div>
+</div>
+
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h3><span class="orange-text">Our</span> Products</h3>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @if (Model == null || !Model.Any())
+            {
+                <div class="col-12 text-center">
+                    <p>No products available.</p>
+                </div>
+            }
+            else
+            {
+                int index = 0;
+                foreach (var product in Model)
+                {
+                    <div class="col-lg-4 col-md-6 @(index == 2 ? "offset-md-3 offset-lg-0" : "") text-center mb-4">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a asp-area="" asp-controller="Shop" asp-action="Product" asp-route-id="@product.Id">
+                                    <img src="@Url.Content(product.ImageUrl ?? "~/assets/img/products/no-image.png")" alt="@product.Name" style="width:100%; height:200px; object-fit:cover;" />
+                                </a>
+                            </div>
+                            <h3>@product.Name</h3>
+                            <p class="product-price">
+                                <span>Per Unit</span><br />
+                                @if (product.Discount.HasValue && product.Discount.Value > 0)
+                                {
+                                    decimal discountedPrice = product.Price - (product.Price * product.Discount.Value);
+                                    <del>@product.Price.ToString("C")</del>
+                                    <span class="text-success fw-bold ms-2">@discountedPrice.ToString("C")</span>
+                                    <br />
+                                    <span class="badge bg-success">@(product.Discount.Value * 100)% OFF</span>
+                                }
+                                else
+                                {
+                                    @product.Price.ToString("C")
+                                }
+                            </p>
+                            @* <p class="product-price"><span>Per Unit</span> @product.Price.ToString("C")</p> *@
+                            <a asp-area="" asp-controller="Shop" asp-action="AddToCart" asp-route-id="@product.Id" class="cart-btn">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </a>
+                            <a asp-controller="Customer" asp-action="Details" asp-route-id="@product.Id" class="cart-btn">Details</a>
+                        </div>
+                    </div>
+                    index++;
+                }
+            }
+        </div>
+    </div>
+</div>

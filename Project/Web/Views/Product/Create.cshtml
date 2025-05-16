@@ -44,9 +44,9 @@
 
                 <div class="form-group mb-3">
                     <label asp-for="CategoryId"></label>
-                    @* <select asp-for="CategoryId" asp-items="Model.Categories" class="form-control">
+                     <select asp-for="CategoryId" asp-items="Model.Categories" class="form-control">
                         <option value="">-- Select Category --</option>
-                    </select> *@
+                    </select> 
                     <input asp-for="CategoryId" type="number" class="form-control" />
 
                     <span asp-validation-for="CategoryId" class="text-danger"></span>

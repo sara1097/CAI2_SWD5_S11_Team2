@@ -63,7 +63,7 @@ namespace Infrastructure.Repository
                 throw new Exception("Product not found");
 
             var existingItem = cart.CartItems?
-                .FirstOrDefault(ci => ci.ProductId == productId && ci.Color == color && ci.Size == size);
+                .FirstOrDefault(ci => ci.ProductId == productId );
 
             if (existingItem != null)
             {
@@ -78,10 +78,8 @@ namespace Infrastructure.Repository
                     CartId = cartId,
                     ProductId = productId,
                     Quantity = quantity,
-                    UnitPrice = product.Price - product.Discount,
-                    SubtotalAmount = (product.Price - product.Discount) * quantity,
-                    Color = color,
-                    Size = size,
+                    UnitPrice = (decimal)(product.Price - product.Discount),
+                    SubtotalAmount = (decimal)((product.Price - product.Discount) * quantity),
                     IsInStock = product.StockQuantity >= quantity
                 };
 

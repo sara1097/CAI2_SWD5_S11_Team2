@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
+//using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering; // This is for ASP.NET Core
+
 
 
 namespace Domain.ViewModel

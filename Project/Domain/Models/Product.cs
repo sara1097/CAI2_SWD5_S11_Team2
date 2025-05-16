@@ -24,7 +24,7 @@ namespace Domain.Models
         public decimal Price { get; set; }
 
         [Column(TypeName = "decimal(2,2)")]
-        public decimal Discount { get; set; }
+        public decimal? Discount { get; set; }
 
         public string ImageUrl { get; set; }
 

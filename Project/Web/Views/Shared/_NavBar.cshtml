@@ -33,15 +33,9 @@
                             }
                             else if (isAdmin)
                             {
-                                <!-- Admin Navbar -->
-                                @* <li class="current-list-item "> *@
-                                @*     <a asp-area="" asp-controller="" asp-action="">Dashboard</a> *@
-                                @*     <a asp-area="" asp-controller="" asp-action="">Manage Orders</a> *@
-                                @*     <a asp-area="" asp-controller="" asp-action="">Manage Products</a> *@
-                                @*     <a asp-area="" asp-controller="" asp-action="">Manage Categories</a> *@
-                                @* </li> *@
                                 <li class="@(currentController == "Product" && currentAction == "Index" ? "active-orange" : "")"><a asp-controller="Product" asp-action="Index"> Products</a></li>
-                                <li><a  asp-controller="Category" asp-action="Index"> Categories</a></li>
+                                <li class="@(currentController == "Category" && currentAction == "Index" ? "active-orange" : "")">
+                                    <a  asp-controller="Category" asp-action="Index"> Categories</a></li>
                                 <li class="@(currentController == "Admin" && currentAction == "Orders" ? "active-orange" : "")">
                                     <a  asp-controller="Admin" asp-action="Orders"> Orders</a>
                                 </li>
@@ -71,23 +65,13 @@
                                 <li>
                                     <a href="#">Pages</a>
                                     <ul class="sub-menu">
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Error404">404 page</a></li>
                                         <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                                         <li><a asp-area="" asp-controller="Shop" asp-action="Cart">Cart</a></li>
                                         <li><a asp-area="" asp-controller="Shop" asp-action="Checkout">Check Out</a></li>
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                                        <li><a asp-area="" asp-controller="Blog" asp-action="Index">News</a></li>
                                         <li><a asp-area="" asp-controller="Shop" asp-action="Index">Shop</a></li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a asp-area="" asp-controller="Blog" asp-action="Index">News</a>
-                                    <ul class="sub-menu">
-                                        <li><a asp-area="" asp-controller="Blog" asp-action="Index">News</a></li>
-                                        <li><a asp-area="" asp-controller="Blog" asp-action="Detail">Single News</a></li>
-                                    </ul>
-                                </li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                                
                                 <li>
                                     <a asp-area="" asp-controller="Shop" asp-action="Index">Shop</a>
                                     <ul class="sub-menu">

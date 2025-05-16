@@ -49,9 +49,7 @@ namespace Core.Services
                 throw new Exception("Product not available in requested quantity");
 
             var existingItem = cart.CartItems.FirstOrDefault(ci =>
-                ci.ProductId == productId &&
-                ci.Color == color &&
-                ci.Size == size);
+                ci.ProductId == productId );
 
             if (existingItem != null)
             {
@@ -67,8 +65,6 @@ namespace Core.Services
                     Quantity = quantity,
                     UnitPrice = product.Price,
                     SubtotalAmount = product.Price * quantity,
-                    Color = color,
-                    Size = size,
                     IsInStock = product.StockQuantity >= quantity
                 };
 
@@ -151,9 +147,7 @@ namespace Core.Services
                     ProductId = cartItem.ProductId,
                     Quantity = cartItem.Quantity,
                     UnitPrice = cartItem.UnitPrice,
-                    SubtotalAmount = cartItem.SubtotalAmount,
-                    Color = cartItem.Color,
-                    Size = cartItem.Size
+                    SubtotalAmount = cartItem.SubtotalAmount
                 });
             }
 

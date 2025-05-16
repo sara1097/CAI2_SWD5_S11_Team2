@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250515135235_seedCategorydata")]
-    partial class seedCategorydata
+    [Migration("20250516033353_InitialMigrate")]
+    partial class InitialMigrate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,10 +81,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("CartId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsInStock")
                         .HasColumnType("bit");
 
@@ -93,10 +89,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("SubtotalAmount")
                         .HasColumnType("decimal(18,2)");
@@ -255,10 +247,6 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -267,10 +255,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("SubtotalAmount")
                         .HasColumnType("decimal(10,2)");
@@ -341,7 +325,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Discount")
+                    b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(2,2)");
 
                     b.Property<string>("ImageUrl")
@@ -370,6 +354,56 @@ namespace Infrastructure.Migrations
                     b.HasIndex("Name");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Description = "High-performance laptop",
+                            Discount = 0.10m,
+                            ImageUrl = "~/assets/img/products/laptop.jpg",
+                            IsFeatured = true,
+                            Name = "Laptop",
+                            Price = 999.99m,
+                            StockQuantity = 10
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            Description = "Latest smartphone model",
+                            Discount = 0.05m,
+                            ImageUrl = "~/assets/img/products/smartphone.jpg",
+                            IsFeatured = true,
+                            Name = "Smartphone",
+                            Price = 699.99m,
+                            StockQuantity = 15
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 2,
+                            Description = "Bestselling novel",
+                            Discount = 0.00m,
+                            ImageUrl = "~/assets/img/products/novel.jpg",
+                            IsFeatured = false,
+                            Name = "Novel",
+                            Price = 19.99m,
+                            StockQuantity = 20
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 3,
+                            Description = "Comfortable cotton t-shirt",
+                            Discount = 0.00m,
+                            ImageUrl = "~/assets/img/products/tshirt.jpg",
+                            IsFeatured = false,
+                            Name = "T-Shirt",
+                            Price = 29.99m,
+                            StockQuantity = 25
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Review", b =>

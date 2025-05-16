@@ -27,10 +27,6 @@ namespace Domain.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal SubtotalAmount { get; set; }
 
-        public string Color { get; set; }
-
-        public string Size { get; set; }
-
         public bool IsInStock { get; set; }
 
 

@@ -6,7 +6,9 @@ using Domain.Models;
 using Infrastructure.IRepository;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System.Web.Mvc;
+//using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 namespace Core.Services
 {
     public class CategoryService
@@ -56,14 +58,14 @@ namespace Core.Services
             }
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetCategoriesWithSelectListItem()
+        public async Task<List<SelectListItem>> GetCategoriesWithSelectListItem()
         {
             var categories = await _unitOfWork._category.GetAll();
             return categories.Select(c => new SelectListItem
             {
                 Value = c.Id.ToString(),
                 Text = c.Name
-            });
+            }).ToList();
         }
     }
 }
