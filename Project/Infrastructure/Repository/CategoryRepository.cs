@@ -32,5 +32,37 @@ namespace Infrastructure.Repository
 
             return category;
         }
+
+        public async Task<List<Category>> GetAllCategoriesWithProductsAsync()
+        {
+            var categories = await _context.Categories.ToListAsync();
+
+            foreach (var category in categories)
+            {
+                _context.Entry(category).Collection(c => c.Products).Load(); // Explicitly load products
+            }
+
+            return categories;
+        }
+
+        public async Task AddAsync(Category category)
+        {
+            await _context.Categories.AddAsync(category);
+        }
+
+        public async Task<Category> GetByIdAsync(int id)
+        {
+            return await _context.Categories.FindAsync(id);
+        }
+
+        public async Task UpdateAsync(Category category)
+        {
+            _context.Categories.Update(category);
+        }
+
+        public async Task DeleteAsync(Category category)
+        {
+            _context.Categories.Remove(category);
+        }
     }
 }

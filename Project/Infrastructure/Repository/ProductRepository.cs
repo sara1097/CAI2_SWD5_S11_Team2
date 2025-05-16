@@ -73,5 +73,10 @@ namespace Infrastructure.Repository
 
             return allProducts;
         }
+
+        public async Task AddAsync(Product product)
+        {
+            await _context.Products.AddAsync(product);
+        }
     }
 }

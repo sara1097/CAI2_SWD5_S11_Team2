@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj": {}
+    "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
+    "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\malawy\\.nuget\\packages\\",
-        "outputPath": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\obj\\",
+        "projectPath": "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\D E L L\\.nuget\\packages\\",
+        "outputPath": "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\malawy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\D E L L\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,14 +42,22 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
+          "auditMode": "all"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.3.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
               "version": "[8.0.4, )"
@@ -72,24 +79,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\malawy\\.nuget\\packages\\",
-        "outputPath": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\obj\\",
+        "projectPath": "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\D E L L\\.nuget\\packages\\",
+        "outputPath": "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\malawy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\D E L L\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -98,15 +105,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
-                "projectPath": "E:\\Mero_Projects\\Depi_Projects\\DEPI_Final_Project\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj"
+              "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\github project\\depi project\\CAI2_SWD5_S11_Team2\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj"
               }
             }
           }
@@ -119,14 +125,18 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
+          "auditMode": "all"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.4, )"
@@ -162,7 +172,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

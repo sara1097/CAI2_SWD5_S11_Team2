@@ -142,6 +142,21 @@ namespace Infrastructure.Data
                 entity.HasIndex(o => o.Status);
             });
 
+
+            // Seeding Category data
+            modelBuilder.Entity<Category>().HasData(
+                new Category { Id = 1, Name = "Electronics", Description = "Devices and gadgets" },
+                new Category { Id = 2, Name = "Books", Description = "All kinds of books" },
+                new Category { Id = 3, Name = "Clothing", Description = "Men and Women clothing" }
+            );
+
+            // Seeding Product data
+            modelBuilder.Entity<Product>().HasData(
+                new Product { Id = 1, Name = "Laptop", Description = "High-performance laptop", Price = 999.99m, Discount = 0.10m, ImageUrl = "~/assets/img/products/laptop.jpg", StockQuantity = 10, CategoryId = 1, IsFeatured = true },
+                new Product { Id = 2, Name = "Smartphone", Description = "Latest smartphone model", Price = 699.99m, Discount = 0.05m, ImageUrl = "~/assets/img/products/smartphone.jpg", StockQuantity = 15, CategoryId = 1, IsFeatured = true },
+                new Product { Id = 3, Name = "Novel", Description = "Bestselling novel", Price = 19.99m, Discount = 0.00m, ImageUrl = "~/assets/img/products/novel.jpg", StockQuantity = 20, CategoryId = 2, IsFeatured = false },
+                new Product { Id = 4, Name = "T-Shirt", Description = "Comfortable cotton t-shirt", Price = 29.99m, Discount = 0.00m, ImageUrl = "~/assets/img/products/tshirt.jpg", StockQuantity = 25, CategoryId = 3, IsFeatured = false }
+            );
         }
     }
 }

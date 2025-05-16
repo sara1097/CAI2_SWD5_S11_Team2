@@ -30,6 +30,7 @@ namespace Infrastructure.Repository
 
         // Initialize the ProductRepository
         public IProductRepository _productRepo { get; private set; }
+        public ICategoryRepository _categoryRepo { get; private set; }
 
 
         public UnitOfWork(AppDbContext context)
@@ -49,6 +50,7 @@ namespace Infrastructure.Repository
             
             // Initialize the ProductRepository
             _productRepo = new ProductRepository(_context);
+            _categoryRepo = new CategoryRepository(_context);
         }
 
 

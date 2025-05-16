@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Models;
 using Infrastructure.IRepository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
 namespace Core.Services
@@ -35,19 +36,43 @@ namespace Core.Services
         {
             return await _unitOfWork._product.GetById(id);
         }
-        public async Task<List<Product>> GetProductsByCategoryAsync(int categoryId) 
-            => await _unitOfWork._product.Search(p => p.CategoryId == categoryId);
+        //public async Task<List<Product>> GetProductsByCategoryAsync(int categoryId)
+        //    => await _unitOfWork._product.Search(p => p.CategoryId == categoryId);
 
-        public async Task<List<Product>> GetFeaturedProductsAsync() 
-            => await _unitOfWork._product.Search(p => p.IsFeatured);
-        public async Task AddProductAsync(Product post)
+        public async Task<IEnumerable<Product>> GetProductsByCategoryAsync(int categoryId)
         {
-            await _unitOfWork._product.Add(post);
+            // Using the GetAll method with criteria and includes from BaseRepository
+            return await _unitOfWork._product.GetAll(
+                criteria: p => p.CategoryId == categoryId,
+                includes: new Expression<Func<Product, object>>[] { p => p.Category }
+    );
+        }
+
+        //public async Task<List<Product>> GetProductsByCategoryAsync(int categoryId)
+        //{
+        //    var products = await _context.Products
+        //        .Where(p => p.CategoryId == categoryId)
+        //        .Include(p => p.Category)  // Eager load Category
+        //        .ToListAsync();
+
+        //    return products;
+        //}
+
+        public async Task<List<Product>> GetFeaturedProductsAsync()
+            => await _unitOfWork._product.Search(p => p.IsFeatured);
+        // public async Task AddProductAsync(Product post)
+        // {
+        //     await _unitOfWork._product.Add(post);
+        //     await _unitOfWork.CompleteAsync();
+        // }
+        public async Task AddProductAsync(Product product)
+        {
+            await _unitOfWork._productRepo.AddAsync(product); // ← use repo, not IBaseRepository
             await _unitOfWork.CompleteAsync();
         }
         public async Task UpdateProductAsync(Product post)
         {
-             _unitOfWork._product.Update(post);
+            _unitOfWork._product.Update(post);
             await _unitOfWork.CompleteAsync();
         }
         public async Task DeleteProductAsync(int id)
@@ -78,7 +103,7 @@ namespace Core.Services
                 {
                     CustomerId = customerId,
                     ProductId = productId
-                } );
+                });
                 await _unitOfWork.CompleteAsync();
             }
         }
@@ -102,5 +127,7 @@ namespace Core.Services
 
             return favorites.Any();
         }
+
+        
     }
 }

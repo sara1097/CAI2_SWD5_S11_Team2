@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Domain.Models
 {
@@ -33,10 +34,15 @@ namespace Domain.Models
         public int CategoryId { get; set; }
 
         public bool IsFeatured { get; set; }
+
         public virtual Category Category { get; set; }
+
         public virtual List<OrderItem> OrderItems { get; set; }
+
         public virtual List<CartItem> CartItems { get; set; }
+
         public virtual List<Review> Reviews { get; set; }
+
         public virtual List<CustomerFavoriteProduct> FavoritedByCustomers { get; set; } = new List<CustomerFavoriteProduct>();
     }
 }

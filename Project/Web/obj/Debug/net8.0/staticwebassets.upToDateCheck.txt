@@ -111,6 +111,11 @@ wwwroot\assets\webfonts\fa-solid-900.woff
 wwwroot\assets\webfonts\fa-solid-900.woff2
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\Images\Products\02d25f03-e252-4033-b6a7-588b7074a896.jpg
+wwwroot\Images\Products\7767071e-d494-4fa5-ae18-f237f6d6fe92.jpg
+wwwroot\Images\Products\7b04df61-7692-49f3-a46d-8f1f57c66a7a.jpg
+wwwroot\Images\Products\9310417d-8b30-4ce7-a1cc-bad9827935e8.jpg
+wwwroot\Images\Products\a11af1ab-6e20-487a-8dad-96ca5c46dbde.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map

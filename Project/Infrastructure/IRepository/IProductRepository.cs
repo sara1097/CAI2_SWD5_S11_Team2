@@ -13,5 +13,7 @@ namespace Infrastructure.IRepository
         Task<List<Product>> GetProductsByCategoryAsync(int categoryId);
         Task<List<Product>> SearchProductsAsync(string searchTerm);
         Task<Product> GetProductWithDetailsAsync(int id);
+
+        Task AddAsync(Product product);
     }
 }

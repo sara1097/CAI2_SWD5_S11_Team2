@@ -29,7 +29,7 @@ namespace Web.Controllers
             {
                 var user = await _userManager.GetUserAsync(User);
                 if (await _userManager.IsInRoleAsync(user, "Admin"))
-                    return RedirectToAction("Products", "Admin");
+                    return RedirectToAction("Index", "Product");
 
                 if (await _userManager.IsInRoleAsync(user, "Customer"))
                     return RedirectToAction("Index", "Customer");

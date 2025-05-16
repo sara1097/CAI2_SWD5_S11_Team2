@@ -129,6 +129,26 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Devices and gadgets",
+                            Name = "Electronics"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "All kinds of books",
+                            Name = "Books"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Men and Women clothing",
+                            Name = "Clothing"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Customer", b =>
@@ -347,6 +367,56 @@ namespace Infrastructure.Migrations
                     b.HasIndex("Name");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Description = "High-performance laptop",
+                            Discount = 0.10m,
+                            ImageUrl = "~/assets/img/products/laptop.jpg",
+                            IsFeatured = true,
+                            Name = "Laptop",
+                            Price = 999.99m,
+                            StockQuantity = 10
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            Description = "Latest smartphone model",
+                            Discount = 0.05m,
+                            ImageUrl = "~/assets/img/products/smartphone.jpg",
+                            IsFeatured = true,
+                            Name = "Smartphone",
+                            Price = 699.99m,
+                            StockQuantity = 15
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 2,
+                            Description = "Bestselling novel",
+                            Discount = 0.00m,
+                            ImageUrl = "~/assets/img/products/novel.jpg",
+                            IsFeatured = false,
+                            Name = "Novel",
+                            Price = 19.99m,
+                            StockQuantity = 20
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 3,
+                            Description = "Comfortable cotton t-shirt",
+                            Discount = 0.00m,
+                            ImageUrl = "~/assets/img/products/tshirt.jpg",
+                            IsFeatured = false,
+                            Name = "T-Shirt",
+                            Price = 29.99m,
+                            StockQuantity = 25
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Review", b =>

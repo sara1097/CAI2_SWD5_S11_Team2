@@ -40,8 +40,8 @@
                                 @*     <a asp-area="" asp-controller="" asp-action="">Manage Products</a> *@
                                 @*     <a asp-area="" asp-controller="" asp-action="">Manage Categories</a> *@
                                 @* </li> *@
-                                <li><a  asp-controller="Admin" asp-action="Products"> Products</a></li>
-                                <li><a  asp-controller="" asp-action=""> Categories</a></li>
+                                <li class="@(currentController == "Product" && currentAction == "Index" ? "active-orange" : "")"><a asp-controller="Product" asp-action="Index"> Products</a></li>
+                                <li><a  asp-controller="Category" asp-action="Index"> Categories</a></li>
                                 <li class="@(currentController == "Admin" && currentAction == "Orders" ? "active-orange" : "")">
                                     <a  asp-controller="Admin" asp-action="Orders"> Orders</a>
                                 </li>
