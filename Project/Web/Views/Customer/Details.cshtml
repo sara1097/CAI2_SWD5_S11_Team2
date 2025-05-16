@@ -127,6 +127,58 @@
                             </div>
                         </form>
 
+                        <!-- Reviews Section -->
+                        <div class="card shadow border-0 mb-5">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="mb-0">Customer Reviews</h4>
+                            </div>
+                            <div class="card-body">
+                                @if (Model.Reviews != null && Model.Reviews.Any())
+                                {
+                                    foreach (var review in Model.Reviews)
+                                    {
+                                        <div class="mb-3 p-3 border rounded review-box">
+                                            <strong>@review.Customer.User.Name</strong>
+                                            <div>
+                                                <span class="badge bg-warning text-dark">Rating: @review.Rating / 5</span>
+                                            </div>
+                                            <p class="mt-2">@review.Comment</p>
+                                            <small class="text-muted">@review.ReviewDate.ToShortDateString()</small>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <p class="text-muted">No reviews yet.</p>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Leave a Review -->
+                        <div class="card shadow border-0 mb-5">
+                            <div class="card-header bg-secondary bg-gradient text-white">
+                                <h4 class="mb-0">Leave a Review</h4>
+                            </div>
+                            <div class="card-body">
+                                <p>If you have a comment don't feel hesitant to send us your opinion.</p>
+                                <form asp-controller="Review" asp-action="SubmitReview" method="post">
+                                    <input type="hidden" name="productId" value="@Model.Id" />
+
+                                    <div class="mb-3">
+                                        <label for="rating" class="form-label">Rating (1 to 5)</label>
+                                        <input type="number" name="rating" id="rating" class="form-control" min="1" max="5" required />
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="comment" class="form-label">Comment</label>
+                                        <textarea name="comment" id="comment" class="form-control" cols="30" rows="5" placeholder="Your Message" required></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+
                         @if (TempData["ErrorMessage"] != null)
                         {
                             <div class="alert alert-danger mt-3">

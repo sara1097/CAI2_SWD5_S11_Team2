@@ -16,6 +16,7 @@ namespace Infrastructure.IRepository
         void Update(T entity);
         void Delete(T entity);
         Task<List<T>> GetAll(Expression<Func<T, bool>> criteria = null, Expression<Func<T, object>>[] includes = null);
+        Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter);
 
     }
 }

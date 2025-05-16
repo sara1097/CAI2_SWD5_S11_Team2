@@ -40,7 +40,7 @@ namespace Core.Services
             return cart;
         }
 
-        public async Task AddToCartAsync(int customerId, int productId, int quantity)
+        public async Task AddToCartAsync(int customerId, int productId, int quantity, decimal unitPrice)
         {
             var cart = await GetCartByCustomerIdAsync(customerId);
             var product = await _productService.GetProductByIdAsync(productId);
@@ -69,7 +69,7 @@ namespace Core.Services
                     CartId = cart.Id,
                     ProductId = productId,
                     Quantity = quantity,
-                    UnitPrice = product.Price,
+                    UnitPrice = unitPrice,
                     SubtotalAmount = product.Price * quantity,
                     IsInStock = product.StockQuantity >= quantity
                 };

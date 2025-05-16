@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\sara1097\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {}
+    "E:\\Mero_Projects\\Depi_Projects\\DepiFinal\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\sara1097\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
+    "E:\\Mero_Projects\\Depi_Projects\\DepiFinal\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\sara1097\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
+        "projectUniqueName": "E:\\Mero_Projects\\Depi_Projects\\DepiFinal\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\user\\source\\repos\\sara1097\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\sara1097\\CAI2_SWD5_S11_Team2\\Project\\Domain\\obj\\",
+        "projectPath": "E:\\Mero_Projects\\Depi_Projects\\DepiFinal\\CAI2_SWD5_S11_Team2\\Project\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\malawy\\.nuget\\packages\\",
+        "outputPath": "E:\\Mero_Projects\\Depi_Projects\\DepiFinal\\CAI2_SWD5_S11_Team2\\Project\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "F:\\microsoft visual studio\\shared\\NuGetPackages"
+          "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\malawy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -83,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

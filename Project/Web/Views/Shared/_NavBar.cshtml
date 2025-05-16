@@ -54,37 +54,38 @@
                             {
                                 <li class="@(currentController == "Customer" && currentAction == "Index" ? "active-orange" : "")">
                                     <a asp-area="" asp-controller="Customer" asp-action="Index">Home</a>
-                                     @* <ul class="sub-menu">  *@
-                                        @* <li><a asp-area="" asp-controller="Home" asp-action="Index">Static Home</a></li> *@
-                                        @* <li><a asp-area="" asp-controller="Home" asp-action="IndexSlider">Slider Home</a></li> *@
-                                     @* </ul>  *@
-                                </li>
-                                <li class="@(currentController == "Customer" && currentAction == "About" ? "active-orange" : "")">
-                                    <a asp-area="" asp-controller="Customer" asp-action="About">About</a>
                                 </li>
                                 <li>
-                                    <a href="#">Pages</a>
+                                    <a >Pages</a>
                                     <ul class="sub-menu">
-                                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                                        <li><a asp-area="" asp-controller="Shop" asp-action="Cart">Cart</a></li>
+                                        @* <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li> *@
+                                        <li><a asp-area="" asp-controller="Cart" asp-action="index">Cart</a></li>
                                         <li><a asp-area="" asp-controller="Shop" asp-action="Checkout">Check Out</a></li>
-                                        <li><a asp-area="" asp-controller="Shop" asp-action="Index">Shop</a></li>
+                                        <li><a asp-area="" asp-controller="Customer" asp-action="ALLP">Shop</a></li>
+                                        <li><a asp-area="" asp-controller="Order" asp-action="MyOrders">Orders</a></li>
                                     </ul>
                                 </li>
                                 
                                 <li>
-                                    <a asp-area="" asp-controller="Shop" asp-action="Index">Shop</a>
+                                    <a asp-area="" asp-controller="Customer" asp-action="ALLP">Shop</a>
                                     <ul class="sub-menu">
-                                        <li><a asp-area="" asp-controller="Shop" asp-action="Index">Shop</a></li>
+                                        <li><a asp-area="" asp-controller="Customer" asp-action="ALLP">Shop</a></li>
                                         <li><a asp-area="" asp-controller="Shop" asp-action="Checkout">Check Out</a></li>
-                                        <li><a asp-area="" asp-controller="Shop" asp-action="Product">Single Product</a></li>
-                                        <li><a asp-area="" asp-controller="Shop" asp-action="Cart">Cart</a></li>
+                                        <li><a asp-area="" asp-controller="Cart" asp-action="Index">Cart</a></li>
                                     </ul>
                                 </li>
+                                <li><a asp-area="" asp-controller="Order" asp-action="MyOrders">Orders</a></li>
+
                                 <li>
+                                    <form asp-controller="Category" asp-action="Search" method="get" class="mb-3">
+                                        <div class="input-group">
+                                            <input type="text" name="keyword" class="form-control" placeholder="Search categories..." />
+                                            <button type="submit" class="btn btn-outline-secondary ">Search</button>
+                                        </div>
+                                    </form>
                                     <div class="header-icons">
                                         <a class="shopping-cart" asp-area="" asp-controller="Shop" asp-action="Cart"><i class="fas fa-shopping-cart"></i></a>
-                                        <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                        @*  <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>*@
                                         <form asp-controller="Account" asp-action="Logout" method="post">
                                             <button type="submit" style=" background-color:#1a1a1a; border:none">
                                                 <i class="fas fa-portrait" style="font-size:28px; color:#fd7e14;"></i>
@@ -92,13 +93,6 @@
                                         </form>
                                     </div>
 								</li>
-                                @* <li class="current-list-item "> *@
-                                @*     <form asp-controller="Account" asp-action="Logout" method="post" > *@
-                                @*         <button type="submit" style=" background-color:#1a1a1a; border:none"> *@
-                                @*             <i class="fas fa-portrait" style="font-size:28px; color:#fd7e14;"></i> *@
-                                @*         </button>  *@
-                                @*     </form> *@
-                                @* </li>	 *@
                             }   
 						</ul>
                         

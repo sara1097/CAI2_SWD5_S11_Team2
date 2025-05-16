@@ -65,7 +65,23 @@
                                                 <div class="text-danger"><small>Out of stock</small></div>
                                             }
                                         </td>
-                                        <td class="product-price">$@item.UnitPrice.ToString("N2")</td>
+                                        @* <td class="product-price">$@item.UnitPrice.ToString("N2")</td> *@
+                                        <td class="product-price">
+                                            @if (item.Product.Discount.HasValue && item.Product.Discount > 0)
+                                            {
+                                                <span class="text-muted" style="text-decoration: line-through;">
+                                                    $@item.Product.Price.ToString("N2")
+                                                </span>
+                                                <span class="text-danger">
+                                                    $@item.UnitPrice.ToString("N2")
+                                                </span>
+                                                <span class="badge badge-danger">@((item.Product.Discount.Value * 100).ToString("N0"))% OFF</span>
+                                            }
+                                            else
+                                            {
+                                                <span>$@item.UnitPrice.ToString("N2")</span>
+                                            }
+                                        </td>
                                         <td class="product-quantity">
                                             <form asp-action="UpdateCartItem" method="post" class="d-flex">
                                                 <input type="hidden" name="cartItemId" value="@item.Id" />
@@ -116,8 +132,8 @@
                             </tbody>
                         </table>
                         <div class="cart-buttons">
-                            <a href="/Home" class="boxed-btn">Continue Shopping</a>
-                            <a href="/Checkout" class="boxed-btn black">Check Out</a>
+                            <a asp-action="ALLP" asp-controller="Customer" class="boxed-btn">Continue Shopping</a>
+                            <a asp-action="checkout" asp-controller="Cart" class="boxed-btn black">Check Out</a>
                         </div>
                     </div>
                 </div>

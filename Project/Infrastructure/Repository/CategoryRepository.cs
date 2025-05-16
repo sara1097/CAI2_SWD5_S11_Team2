@@ -64,5 +64,13 @@ namespace Infrastructure.Repository
         {
             _context.Categories.Remove(category);
         }
+
+        public async Task<List<Category>> SearchCategoriesAsync(string keyword)
+        {
+            return await _context.Categories
+                .Where(c => c.Name.Contains(keyword))
+                .Include(c => c.Products)
+                .ToListAsync();
+        }
     }
 }

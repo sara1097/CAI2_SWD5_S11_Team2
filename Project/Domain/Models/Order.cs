@@ -20,8 +20,6 @@ namespace Domain.Models
         [Required]
         public string OrderNumber { get; set; }
 
-        [Column(TypeName = "decimal(10,2)")]
-        public decimal TotalAmount { get; set; }
 
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
 
@@ -29,6 +27,7 @@ namespace Domain.Models
 
         public string ShippingAddress { get; set; }
 
+        public decimal TotalAmount { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
 
         public DateTime OrderDate { get; set; } = DateTime.UtcNow;

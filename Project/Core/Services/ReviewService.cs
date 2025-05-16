@@ -101,5 +101,28 @@ namespace Core.Services
             await _unitOfWork.CompleteAsync();
             return true;
         }
+
+        public async Task AddReviewAsync(string comment, int rating, int customerId, int productId)
+        {
+            var review = new Review
+            {
+                ProductId = productId,
+                CustomerId = customerId,
+                Rating = rating,
+                Comment = comment,
+                Status = ReviewStatus.Pending,
+                ReviewDate = DateTime.Now
+            };
+
+            await _unitOfWork._review.Add(review);
+            await _unitOfWork.CompleteAsync();
+        }
+        public async Task<int?> GetCustomerIdByUserIdAsync(string userId)
+        {
+            var customer = await _unitOfWork._customer.GetFirstOrDefault(c => c.UserId == userId);
+            return customer?.Id;
+        }
+
+
     }
 }

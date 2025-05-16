@@ -37,3 +37,16 @@ C:\Users\user\source\repos\sara1097\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug
 C:\Users\user\source\repos\sara1097\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\refint\Domain.dll
 C:\Users\user\source\repos\sara1097\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.pdb
 C:\Users\user\source\repos\sara1097\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\ref\Domain.dll
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\bin\Debug\net8.0\Domain.deps.json
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\bin\Debug\net8.0\Domain.dll
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\bin\Debug\net8.0\Domain.pdb
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.dll
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\refint\Domain.dll
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\Domain.pdb
+E:\Mero_Projects\Depi_Projects\DepiFinal\CAI2_SWD5_S11_Team2\Project\Domain\obj\Debug\net8.0\ref\Domain.dll

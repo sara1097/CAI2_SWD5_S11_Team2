@@ -1,0 +1,162 @@
+﻿@model Domain.Models.Cart
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Checkout</h2>
+                </div>
+
+                <div class="card-body">
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            @TempData["ErrorMessage"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+
+                    <form asp-action="Checkout" method="post" id="checkoutForm">
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            <label for="shippingAddress" class="font-weight-bold">Shipping Address</label>
+                            <textarea name="shippingAddress" id="shippingAddress" class="form-control" rows="3" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Payment Method</label>
+                            <div class="payment-methods">
+                                <div class="custom-control custom-radio mb-2">
+                                    <input type="radio" id="cashPayment" name="paymentMethod" value="Cash" class="custom-control-input">
+                                    <label class="custom-control-label" for="cashPayment">
+                                        <i class="fas fa-money-bill-wave mr-2"></i>Cash on Delivery
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="creditPayment" name="paymentMethod" value="Credit" class="custom-control-input">
+                                    <label class="custom-control-label" for="creditPayment">
+                                        <i class="far fa-credit-card mr-2"></i>Credit Card (Stripe)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h4 class="mb-3">Order Summary</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th class="text-right">Price</th>
+                                        <th class="text-right">Qty</th>
+                                        <th class="text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.CartItems)
+                                    {
+                                        <tr>
+                                            <td>@item.Product.Name</td>
+                                            <td class="text-right">@item.UnitPrice.ToString("C")</td>
+                                            <td class="text-right">@item.Quantity</td>
+                                            <td class="text-right">@((item.UnitPrice * item.Quantity).ToString("C"))</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot class="bg-light">
+                                    <tr>
+                                        <th colspan="3" class="text-right">Subtotal:</th>
+                                        <th class="text-right">@Model.CartItems.Sum(i => i.UnitPrice * i.Quantity).ToString("C")</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="/Cart" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left mr-2"></i>Back to Cart
+                            </a>
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-check mr-2"></i>Place Order
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">Order Summary</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        @foreach (var item in Model.CartItems)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @item.Product.Name
+                                <span class="badge badge-primary badge-pill">@item.Quantity</span>
+                            </li>
+                        }
+                        <li class="list-group-item d-flex justify-content-between align-items-center font-weight-bold">
+                            <span>Total:</span>
+                            <span>@Model.CartItems.Sum(i => i.UnitPrice * i.Quantity).ToString("C")</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5><i class="fas fa-info-circle text-info mr-2"></i>Need Help?</h5>
+                    <p class="mb-0">Contact our customer support for any questions about your order.</p>
+                    <a href="/Contact" class="btn btn-link p-0">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .payment-methods {
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+            padding: 1rem;
+        }
+
+        .card-header {
+            font-weight: 600;
+        }
+
+        textarea#shippingAddress {
+            min-height: 100px;
+        }
+
+        .btn-lg {
+            padding: 0.5rem 1.5rem;
+            font-size: 1.1rem;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#checkoutForm').on('submit', function() {
+                $('button[type="submit"]').prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-2"></i>Processing...');
+            });
+        });
+    </script>
+}

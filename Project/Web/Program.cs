@@ -6,6 +6,7 @@ using Infrastructure.IRepository;
 using Infrastructure.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,7 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
     .AddEntityFrameworkStores<AppDbContext>();
 
 
-
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:Secretkey").Get<string>();
 
 
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
@@ -31,10 +32,10 @@ builder.Services.AddScoped(typeof(ICustomerRepository), typeof(CustomerRepositor
 builder.Services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
 builder.Services.AddScoped(typeof(ICartRepository), typeof(CartRepository));
 
-builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<Core.Services.ProductService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<CartService>();
-builder.Services.AddScoped<ReviewService>();
+builder.Services.AddScoped<Core.Services.ReviewService>();
 builder.Services.AddScoped<CategoryService>();
 var app = builder.Build();
 

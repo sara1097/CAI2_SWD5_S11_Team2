@@ -1,0 +1,65 @@
+﻿@model Domain.Models.Order
+
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+
+
+<div class="container mt-150 mb-150">
+    <div class="row">
+        <h2>Order Confirmation</h2>
+        <div class="alert alert-success">
+            <h4>Thank you for your order!</h4>
+            <p>Your order number is: <strong>@Model.OrderNumber</strong></p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Order Details</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderItems)
+                        {
+                            <tr>
+                                <td>@item.Product.Name</td>
+                                <td>@item.UnitPrice.ToString("C")</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.SubtotalAmount.ToString("C")</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="3">Total</th>
+                            <th>@Model.TotalAmount.ToString("C")</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="col-md-4">
+                <h4>Shipping Information</h4>
+                <p>@Model.ShippingAddress</p>
+
+                <h4>Payment Method</h4>
+                <p>@Model.PaymentMethod</p>
+
+                <h4>Order Status</h4>
+                <p>@Model.Status</p>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a asp-action="Index" asp-controller="Product" class="btn btn-primary">Continue Shopping</a>
+        </div>
+    </div>
+</div>

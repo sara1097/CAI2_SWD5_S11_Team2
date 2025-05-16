@@ -67,5 +67,9 @@ namespace Core.Services
                 Text = c.Name
             }).ToList();
         }
+        public async Task<List<Category>> SearchCategoriesAsync(string keyword)
+        {
+            return await _unitOfWork._categoryRepo.SearchCategoriesAsync(keyword);
+        }
     }
 }

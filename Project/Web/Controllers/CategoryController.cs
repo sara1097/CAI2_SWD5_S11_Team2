@@ -155,6 +155,17 @@ namespace Web.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> Search(string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+                return RedirectToAction(nameof(Index));
+
+            var results = await _catService.SearchCategoriesAsync(keyword);
+            return View("Index", results); // Reuse Index view to show results
+        }
+
+
 
     }
 }

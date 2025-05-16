@@ -8,17 +8,20 @@ using Core.Services;
 using Domain.Models;
 using Infrastructure.IRepository;
 using Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Services
 {
-    public class OrderService 
+    public class OrderService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IOrderRepository _orderRepository;
         //private readonly CartService _cartService;
 
-        public OrderService(IUnitOfWork unitOfWork)
+        public OrderService(IUnitOfWork unitOfWork, IOrderRepository orderRepository)
         {
             _unitOfWork = unitOfWork;
+            _orderRepository = orderRepository;
             //_cartService = cartService;
         }
 
@@ -33,6 +36,13 @@ namespace Core.Services
             var orders = await _unitOfWork._order.GetAll(includes: includes);
             return orders.OrderByDescending(o => o.OrderDate).ToList();
         }
+
+        public Task<List<Order>> GetUserOrdersAsync(int userId)
+        {
+            return _orderRepository.GetOrdersByCustomerAsync(userId);
+        }
+
+
 
         public async Task<List<Order>> FilterByStatusAsync(OrderStatus status)
         {
@@ -136,7 +146,70 @@ namespace Core.Services
             }
         }
 
+        public async Task<Order> CreateOrderFromCartAsync(int customerId, string shippingAddress, PaymentMethod paymentMethod)
+        {
+            // Get the customer's cart
+            var cart = await _unitOfWork._cartRepo.GetCartWithItemsAsync(customerId);
+            if (cart == null || cart.CartItems == null || !cart.CartItems.Any())
+                throw new InvalidOperationException("Cart is empty or not found.");
 
+            // Create the order
+            var order = new Order
+            {
+                CustomerId = customerId,
+                OrderNumber = await GenerateOrderNumberAsync(),
+                ShippingAddress = shippingAddress,
+                PaymentMethod = paymentMethod,
+                Status = OrderStatus.Pending,
+                PaymentStatus = PaymentStatus.Pending,
+                OrderDate = DateTime.UtcNow,
+                TotalAmount = cart.TotalAmount,
+                OrderItems = new List<OrderItem>()
+            };
+
+            // Transfer cart items to order items
+            foreach (var cartItem in cart.CartItems)
+            {
+                var product = await _unitOfWork._product.GetById(cartItem.ProductId);
+                if (product == null)
+                    throw new Exception($"Product {cartItem.ProductId} not found");
+
+                if (product.StockQuantity < cartItem.Quantity)
+                    throw new Exception($"Not enough stock for product: {product.Name}");
+
+                // Update product stock
+                product.StockQuantity -= cartItem.Quantity;
+                _unitOfWork._product.Update(product);
+
+                // Add order item
+                order.OrderItems.Add(new OrderItem
+                {
+                    ProductId = cartItem.ProductId,
+                    Quantity = cartItem.Quantity,
+                    UnitPrice = cartItem.UnitPrice,
+                    SubtotalAmount = cartItem.SubtotalAmount
+                });
+            }
+
+            // Save the order
+            await _unitOfWork._order.Add(order);
+
+            // Clear the cart
+            await _unitOfWork._cartRepo.ClearCartAsync(cart.Id);
+
+            // Complete the transaction
+            await _unitOfWork.CompleteAsync();
+
+            return order;
+        }
+
+        private async Task<string> GenerateOrderNumberAsync()
+        {
+            var prefix = "ORD";
+            var random = new Random();
+            var number = random.Next(100000, 999999);
+            return $"{prefix}-{DateTime.Now:yyyyMMdd}-{number}";
+        }
 
         //public async Task<Order> CreateOrderFromCart(int cartId, string userId)
         //{

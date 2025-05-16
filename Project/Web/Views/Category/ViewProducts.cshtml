@@ -18,7 +18,10 @@
             @if (Model == null || !Model.Any())
             {
                 <div class="col-12 text-center">
-                    <p>No products available.</p>
+                    <div class="alert alert-info">
+                        <h5>No products found in this category</h5>
+                        <p>Please check out our other categories.</p>
+                    </div>
                 </div>
             }
             else
@@ -34,10 +37,42 @@
                                 </a>
                             </div>
                             <h3>@product.Name</h3>
-                            <p class="product-price"><span>Per Unit</span> @product.Price.ToString("C")</p>
-                            <a asp-area="" asp-controller="Shop" asp-action="AddToCart" asp-route-id="@product.Id" class="cart-btn">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
-                            </a>
+                            <p class="stock-status @(product.StockQuantity > 0 ? "in-stock" : "out-of-stock")">
+                                @(product.StockQuantity > 0 ? $"{product.StockQuantity} in stock" : "Out of stock")
+                            </p>
+                            <p class="product-price">
+                                <span>Per Unit</span><br />
+                                @if (product.Discount.HasValue && product.Discount.Value > 0)
+                                {
+                                    decimal discountedPrice = product.Price - (product.Price * product.Discount.Value);
+                                    <del>@product.Price.ToString("C")</del>
+                                    <span class="text-success fw-bold ms-2">@discountedPrice.ToString("C")</span>
+                                    <br />
+                                    <span class="badge bg-success">@(product.Discount.Value * 100)% OFF</span>
+                                }
+                                else
+                                {
+                                    @product.Price.ToString("C")
+                                }
+                            </p>
+                            @* <p class="product-price"><span>Per Unit</span> @product.Price.ToString("C")</p> *@
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="add-to-cart-form">
+                                <input type="hidden" name="productId" value="@product.Id" />
+
+                                <div class="quantity-selector">
+                                    <button type="button" class="quantity-btn minus">-</button>
+                                    <input type="number" name="quantity" value="1" min="1"
+                                           max="@product.StockQuantity" class="quantity-input"
+                                    @(product.StockQuantity <= 0 ? "disabled" : "") />
+                                    <button type="button" class="quantity-btn plus">+</button>
+                                </div>
+
+                                <button type="submit" class="cart-btn"
+                                @(product.StockQuantity <= 0 ? "disabled" : "")>
+                                    <i class="fas fa-shopping-cart"></i>
+                                    @(product.StockQuantity <= 0 ? "Out of Stock" : "Add to Cart")
+                                </button>
+                            </form>
                             <a asp-controller="Customer" asp-action="Details" asp-route-id="@product.Id" class="cart-btn">Details</a>
                         </div>
                     </div>
@@ -48,3 +83,187 @@
 
     </div>
 </div> 
+
+@section Styles {
+    <style>
+        .product-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+            .product-img:hover {
+                transform: scale(1.03);
+            }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #F28123;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .single-product-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+            .single-product-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+
+        .product-meta {
+            margin: 15px 0;
+        }
+
+        .stock-status {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .in-stock {
+            color: #28a745;
+        }
+
+        .out-of-stock {
+            color: #dc3545;
+        }
+
+        .price-container {
+            margin: 10px 0;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #6c757d;
+            margin-right: 8px;
+        }
+
+        .discounted-price {
+            color: #F28123;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .current-price {
+            color: #F28123;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .add-to-cart-form {
+            margin: 15px 0;
+        }
+
+        .quantity-selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+            -moz-appearance: textfield;
+        }
+
+            .quantity-input::-webkit-outer-spin-button,
+            .quantity-input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+        .cart-btn, .details-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cart-btn {
+            background-color: #F28123;
+            color: white;
+        }
+
+            .cart-btn:hover:not(:disabled) {
+                background-color: #051922;
+            }
+
+            .cart-btn:disabled {
+                background-color: #6c757d;
+                cursor: not-allowed;
+            }
+
+        .details-btn {
+            background-color: #051922;
+            color: white;
+        }
+
+            .details-btn:hover {
+                background-color: #F28123;
+            }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quantity selector functionality
+            document.querySelectorAll('.quantity-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const input = this.parentElement.querySelector('.quantity-input');
+                    if (this.classList.contains('plus')) {
+                        input.value = parseInt(input.value) + 1;
+                    } else {
+                        if (parseInt(input.value) > 1) {
+                            input.value = parseInt(input.value) - 1;
+                        }
+                    }
+                });
+            });
+
+            // Form validation
+            document.querySelectorAll('.add-to-cart-form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const quantityInput = this.querySelector('.quantity-input');
+                    const maxQuantity = parseInt(quantityInput.max);
+                    const quantity = parseInt(quantityInput.value);
+
+                    if (isNaN(quantity) || quantity < 1 || quantity > maxQuantity) {
+                        e.preventDefault();
+                        alert(`Please enter a valid quantity between 1 and ${maxQuantity}`);
+                    }
+                });
+            });
+        });
+    </script>
+}

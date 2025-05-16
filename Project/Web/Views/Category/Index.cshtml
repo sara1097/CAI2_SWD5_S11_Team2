@@ -10,6 +10,13 @@
         <div class="col-lg-8 offset-lg-2 text-center">
             <h2 style="color:Black">Welcome, Admin!</h2>
             <p style="color:Black">You are logged in as an Admin.</p>
+
+            <form asp-controller="Category" asp-action="Search" method="get" class="mb-3">
+                <div class="input-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="Search categories..." />
+                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

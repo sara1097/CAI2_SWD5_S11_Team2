@@ -21,8 +21,9 @@ namespace Infrastructure.IRepository
         Task UpdateAsync(Category category);
 
         Task DeleteAsync(Category category);
+        Task<List<Category>> SearchCategoriesAsync(string keyword);
 
-        
-        
+
+
     }
 }

@@ -75,6 +75,11 @@ namespace Infrastructure.Repository
             return query.ToListAsync();
         }
 
-      
+        public async Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        {
+            return await _context.Set<T>().FirstOrDefaultAsync(filter);
+        }
+
+
     }
 }

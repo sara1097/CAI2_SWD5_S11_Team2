@@ -26,7 +26,7 @@ namespace Domain.Models
         [MaxLength(1000)]
         public string Comment { get; set; }
 
-        public DateTime ReviewDate { get; set; }= DateTime.Now;
+        public DateTime ReviewDate { get; set; } = DateTime.Now;
 
         [Required]
         public ReviewStatus Status { get; set; } = ReviewStatus.Pending;

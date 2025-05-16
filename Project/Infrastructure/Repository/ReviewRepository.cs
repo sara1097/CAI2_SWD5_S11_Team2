@@ -15,10 +15,11 @@ public class ReviewRepository : IReviewRepository
     public async Task<List<Review>> GetReviewsByProductIdAsync(int productId)
     {
         return await _context.Reviews
-            .Where(r => r.ProductId == productId)
-            .Include(r => r.Customer)
-                .ThenInclude(c => c.User)
-            .ToListAsync();
+          .Where(r => r.ProductId == productId && r.Status == ReviewStatus.Approved)
+          .Include(r => r.Customer)
+          .ThenInclude(c => c.User)
+          .OrderByDescending(r => r.ReviewDate)
+          .ToListAsync();
     }
 
     public async Task AddReviewAsync(Review review)
